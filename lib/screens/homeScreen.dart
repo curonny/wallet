@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:wallet/screens/addItem.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -58,7 +60,32 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(CupertinoIcons.doc),
               title: const Text('Documentos personales'),
               subtitle: const Text(
-                  "Registre sus documentos personales (Id, Passport)"),
+                  "Registre sus documentos personales (Documento identidad, Pasaporte)"),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: const Icon(Icons.event),
+              title: const Text('Métodos hospitalarios'),
+              subtitle: const Text(
+                  "Registre los métodos entregados en las consultas médicas"),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: const Icon(Icons.event),
+              title: const Text('Reserva eventos'),
+              subtitle: const Text("Registre sus reservas de eventos"),
               onTap: () {
                 // Update the state of the app.
                 // ...
@@ -103,6 +130,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ]),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Get.to(AddDocument());
+          },
+          label: const Text("Agregar")),
     );
   }
 }

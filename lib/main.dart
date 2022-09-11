@@ -7,10 +7,13 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:wallet/screens/homeScreen.dart';
 
+import 'models/document.dart';
+
 Future<void> main() async {
   await GetStorage.init();
   Directory directory = await pathProvider.getApplicationDocumentsDirectory();
   Hive.init(directory.path);
+  Hive.registerAdapter(DocumentAdapter());
   runApp(const MyApp());
 }
 
