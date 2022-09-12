@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Wallet',
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
+      theme: ThemeData(useMaterial3: true),
     );
   }
 }

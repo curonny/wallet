@@ -37,7 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Wallet")),
+      appBar: AppBar(
+        title: const Text("Wallet"),
+        actions: [],
+      ),
       drawer: Drawer(
         child: ListView(children: [
           UserAccountsDrawerHeader(

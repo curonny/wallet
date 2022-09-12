@@ -50,7 +50,10 @@ class _AddDocumentState extends State<AddDocument> {
                   ),
                 ),
               ),
-              child: Text("Adicionar".tr),
+              child: Text(
+                "Adicionar".tr,
+                style: const TextStyle(color: Colors.white),
+              ),
               onPressed: () {
                 documentController.addDocument();
               },
