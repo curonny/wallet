@@ -8,6 +8,7 @@ import 'package:wallet/models/document.dart';
 import 'package:wallet/screens/addItem.dart';
 import 'package:wallet/screens/personalDocumentsScreen.dart';
 import 'package:wallet/screens/utils.dart';
+import 'package:wallet/screens/viewItem.dart';
 import 'package:wallet/screens/vuelosScreen.dart';
 
 import '../controllers/documentControllers.dart';
@@ -169,24 +170,27 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: documentController.listDocuments.length,
             itemBuilder: (context, index) {
               Document documento = documentController.listDocuments[index];
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  elevation: 1,
-                  child: ExpansionTile(
-                    title: Text(documento.nombre.toString()),
-                    subtitle: Text(
-                      documento.categorie.toString(),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+              return GestureDetector(
+                onTap: () {
+                  Get.to(ViewDocument(), arguments: {"item": documento});
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    elevation: 1,
+                    child: ListTile(
+                      title: Text(documento.nombre.toString()),
+                      subtitle: Text(
+                        documento.categorie.toString(),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      trailing: IconButton(
+                          onPressed: () {
+                            documentController.removeDocument(index);
+                          },
+                          icon: const Icon(Icons.delete)),
+                      leading: getIconDocument(documento.categorie.toString()),
                     ),
-                    trailing: IconButton(
-                        onPressed: () {
-                          print("a");
-                          documentController.removeDocument(index);
-                        },
-                        icon: const Icon(Icons.delete)),
-                    leading: getIconDocument(documento.categorie.toString()),
-                    children: [],
                   ),
                 ),
               );

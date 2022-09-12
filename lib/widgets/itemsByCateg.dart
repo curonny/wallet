@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wallet/screens/viewItem.dart';
 
 import '../controllers/documentControllers.dart';
 import '../models/document.dart';
@@ -25,25 +26,30 @@ getListDocuments(
                         documentController.listDocuments[index];
                     print(documento.categorie);
                     if (documento.categorie == category.toString()) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          elevation: 1,
-                          child: ExpansionTile(
-                            title: Text(documento.nombre.toString()),
-                            subtitle: Text(
-                              documento.categorie.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                      return GestureDetector(
+                        onTap: () {
+                          Get.to(ViewDocument(),
+                              arguments: {"item": documento});
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 1,
+                            child: ListTile(
+                              title: Text(documento.nombre.toString()),
+                              subtitle: Text(
+                                documento.categorie.toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              leading: getIconDocument(
+                                  documento.categorie.toString()),
+                              trailing: IconButton(
+                                  onPressed: () {
+                                    documentController.removeDocument(index);
+                                  },
+                                  icon: const Icon(Icons.delete)),
                             ),
-                            leading:
-                                getIconDocument(documento.categorie.toString()),
-                            trailing: IconButton(
-                                onPressed: () {
-                                  documentController.removeDocument(index);
-                                },
-                                icon: const Icon(Icons.delete)),
-                            children: [],
                           ),
                         ),
                       );
