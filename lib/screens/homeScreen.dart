@@ -182,6 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: documentController.listDocuments.length,
             itemBuilder: (context, index) {
               Document documento = documentController.listDocuments[index];
+              print(documento.imageFront.toString());
               print(index);
               return GestureDetector(
                 onTap: () {
