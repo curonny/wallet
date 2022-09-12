@@ -12,6 +12,7 @@ import 'package:wallet/screens/viewItem.dart';
 import 'package:wallet/screens/vuelosScreen.dart';
 
 import '../controllers/documentControllers.dart';
+import 'aboutUsScreen.dart';
 import 'bankCardScreen.dart';
 import 'eventScreen.dart';
 import 'hospitalDocumentScreen.dart';
@@ -40,16 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(children: [
           UserAccountsDrawerHeader(
-            accountName: const Text("Ashish Rawat"),
-            accountEmail: const Text("ashishrawat2911@gmail.com"),
+            accountName: const Text("MiWallet"),
+            accountEmail: const Text("Tu billetera para todos los documentos"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
                   ? Colors.blue
                   : Colors.white,
-              child: const Text(
-                "A",
-                style: TextStyle(fontSize: 40.0),
-              ),
+              child: Image.asset("assets/image/playstore.png"),
             ),
           ),
           Padding(
@@ -138,8 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.info),
               title: const Text('Sobre nosotros'),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(AboutUs());
               },
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //  "Documento de identidad",
 // "Tarjeta Bancaria",
@@ -21,5 +22,21 @@ getIconDocument(String string) {
     case "Método hospitalario":
       return const Icon(Icons.local_hospital);
     default:
+  }
+}
+
+openWhatsapp(String whatsapp) async {
+  var whatsappURLiOS =
+      "https://wa.me/$whatsapp?text=${Uri.parse('Sugerencias sobre HabanaTrans ios')}";
+  if (await canLaunch(whatsappURLiOS)) {
+    await launch(whatsappURLiOS, forceSafariVC: false);
+  }
+}
+
+openTelegram(String telegram) async {
+  var telegramURLiOS =
+      "https://t.me/$telegram?text=${Uri.parse('Sugerencias sobre HabanaTrans ios')}";
+  if (await canLaunch(telegramURLiOS)) {
+    await launch(telegramURLiOS, forceSafariVC: false);
   }
 }
