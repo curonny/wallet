@@ -11,6 +11,7 @@ import 'package:wallet/screens/utils.dart';
 
 import '../controllers/documentControllers.dart';
 import 'bankCardScreen.dart';
+import 'eventScreen.dart';
 import 'hospitalDocumentScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -101,8 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Reserva eventos'),
               subtitle: const Text("Registre sus reservas de eventos"),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(EventScreen());
               },
             ),
           ),

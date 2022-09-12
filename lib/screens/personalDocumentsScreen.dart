@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wallet/widgets/itemsByCateg.dart';
 
 import '../controllers/documentControllers.dart';
 import '../models/document.dart';
@@ -32,62 +33,14 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
                 ],
               )),
             )
-          : getListDocuments()),
+          : getListDocuments(
+              "Documento de identidad", documentController, "scanning")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(AddDocument(),
                 arguments: {"category": "Documento de identidad"});
           },
           label: const Text("Agregar")),
-    );
-  }
-
-  getListDocuments() {
-    RxInt index = 0.obs;
-    index.value = documentController.listDocuments
-        .indexWhere((element) => element.categorie == "Documento de identidad");
-    print(index);
-    return Obx(
-      () => index.value == -1
-          ? Lottie.asset("assets/lottie/scanning.json")
-          : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Obx(
-                () => ListView.builder(
-                    itemCount: documentController.listDocuments.length,
-                    itemBuilder: (context, index) {
-                      Document documento =
-                          documentController.listDocuments[index];
-                      if (documento.categorie == "Documento de identidad") {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            elevation: 1,
-                            child: ExpansionTile(
-                              title: Text(documento.nombre.toString()),
-                              subtitle: Text(
-                                documento.categorie.toString(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              leading: getIconDocument(
-                                  documento.categorie.toString()),
-                              trailing: IconButton(
-                                  onPressed: () {
-                                    print("a");
-                                    documentController.removeDocument(index);
-                                  },
-                                  icon: const Icon(Icons.delete)),
-                              children: [],
-                            ),
-                          ),
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    }),
-              ),
-            ),
     );
   }
 }
