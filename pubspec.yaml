@@ -42,7 +42,7 @@ dependencies:
   lottie: ^1.4.2
   swipe_image_gallery: ^0.5.2
   url_launcher: ^6.1.5
-
+  introduction_screen: ^3.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

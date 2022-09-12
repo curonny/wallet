@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:wallet/screens/homeScreen.dart';
+import 'package:wallet/screens/onBoardingScreen.dart';
 
 import 'models/document.dart';
 
