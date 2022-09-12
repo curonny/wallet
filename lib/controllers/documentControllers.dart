@@ -63,7 +63,6 @@ class DocumentController extends GetxController {
     isLoading.value = true;
     final box = await Hive.openBox<Document>("documents");
     listDocuments.value = box.values.toList();
-    listDocuments.sort((a, b) => b.date!.compareTo(a.date!));
     isLoading.value = false;
     update();
   }

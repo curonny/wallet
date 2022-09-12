@@ -39,7 +39,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Wallet"),
-        actions: [],
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(
+                    context: context,
+                    delegate:
+                        DocumentSearch(documentController.listDocuments.value));
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
       drawer: Drawer(
         child: ListView(children: [
@@ -173,6 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: documentController.listDocuments.length,
             itemBuilder: (context, index) {
               Document documento = documentController.listDocuments[index];
+              print(index);
               return GestureDetector(
                 onTap: () {
                   Get.to(ViewDocument(), arguments: {"item": documento});
@@ -189,6 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       trailing: IconButton(
                           onPressed: () {
+                            print(index);
                             documentController.removeDocument(index);
                           },
                           icon: const Icon(Icons.delete)),
@@ -199,6 +210,83 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }),
       ),
+    );
+  }
+}
+
+class DocumentSearch extends SearchDelegate {
+  final List<Document> listDocuments;
+
+  TextEditingController controller = TextEditingController();
+
+  @override
+  String get searchFieldLabel => "Buscar documento";
+
+  DocumentSearch(this.listDocuments);
+  String selectResult = '';
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    //Actions for app bar
+    return [
+      IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+          })
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.menu_arrow,
+          progress: transitionAnimation,
+        ),
+        onPressed: () {
+          close(context, null);
+        });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(
+      child: Text(selectResult),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<Document> suggestionList = [];
+    for (int i = 0; i < listDocuments.length; i++) {
+      if (listDocuments[i].nombre.toString().toLowerCase().contains(query)) {
+        suggestionList.add(listDocuments[i]);
+      }
+    }
+
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(15),
+          child: Card(
+            elevation: 15,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: ListTile(
+              leading: const Icon(
+                CupertinoIcons.doc_text,
+                size: 40,
+              ),
+              title: Text(
+                suggestionList[index].nombre.toString(),
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
