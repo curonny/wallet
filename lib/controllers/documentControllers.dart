@@ -34,7 +34,12 @@ class DocumentController extends GetxController {
 
   addDocument() async {
     if (formKey.currentState!.validate()) {
-      Document item = Document();
+      Document item = Document(
+          nombre: txtNombre.text,
+          categorie: category.value.toString(),
+          date: DateTime.now().toString(),
+          imageFront: imageCardMain.value.toString(),
+          imageBack: imageCardSecondary.value.toString());
       var box = await Hive.openBox<Document>("documents");
       await box.put(DateTime.now().toString(), item);
       update();

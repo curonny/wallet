@@ -19,11 +19,31 @@ class _AddDocumentState extends State<AddDocument> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Adicionar documento"),
-      ),
-      body: formCreateDocument(),
-    );
+        appBar: AppBar(
+          title: const Text("Adicionar documento"),
+        ),
+        body: formCreateDocument(),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            height: 50,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(Get.theme.colorScheme.primary),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+              child: Text("Adicionar".tr),
+              onPressed: () {
+                documentController.addDocument();
+              },
+            ),
+          ),
+        ));
   }
 
   formCreateDocument() {
@@ -294,11 +314,11 @@ class _AddDocumentState extends State<AddDocument> {
                           ),
                           Obx(
                             () => Visibility(
-                                visible:
-                                    documentController.imageCardMain.value !=
-                                        "",
-                                child: Image.file(File(
-                                    documentController.imageCardMain.value))),
+                                visible: documentController
+                                        .imageCardSecondary.value !=
+                                    "",
+                                child: Image.file(File(documentController
+                                    .imageCardSecondary.value))),
                           )
                         ],
                       ),
