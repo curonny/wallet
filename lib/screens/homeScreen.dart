@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:wallet/models/document.dart';
 import 'package:wallet/screens/addItem.dart';
+import 'package:wallet/screens/personalDocumentsScreen.dart';
+import 'package:wallet/screens/utils.dart';
 
 import '../controllers/documentControllers.dart';
 
@@ -42,8 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.credit_card),
               title: const Text('Todas'),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(HomeScreen());
               },
             ),
           ),
@@ -51,22 +53,21 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              leading: const Icon(Icons.credit_card),
-              title: const Text('Tarjetas bancarias'),
-              subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
+              leading: const Icon(CupertinoIcons.person),
+              title: const Text('Documentos personales'),
+              subtitle: const Text(
+                  "Registre sus documentos personales (Documento identidad, Pasaporte)"),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(PersonalDocumentsScreen());
               },
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              leading: const Icon(CupertinoIcons.person),
-              title: const Text('Documentos personales'),
-              subtitle: const Text(
-                  "Registre sus documentos personales (Documento identidad, Pasaporte)"),
+              leading: const Icon(Icons.credit_card),
+              title: const Text('Tarjetas bancarias'),
+              subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
               onTap: () {
                 // Update the state of the app.
                 // ...
@@ -136,7 +137,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ]),
       ),
-      body: getListDocuments(),
+      body: Obx(() => documentController.listDocuments.isEmpty
+          ? Center(
+              child: Column(
+              children: [
+                Lottie.asset("assets/lottie/ticket.json"),
+                const Text("No ha registrado documentos. COMIENCE AHORA!")
+              ],
+            ))
+          : getListDocuments()),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(AddDocument());
@@ -171,29 +180,5 @@ class _HomeScreenState extends State<HomeScreen> {
             }),
       ),
     );
-  }
-
-  //  "Documento de identidad",
-  // "Tarjeta Bancaria",
-  // "Reserva hotel",
-  // "Reserva avión",
-  // "Reserva evento",
-  // "Método hospitalario"
-  getIconDocument(String string) {
-    switch (string) {
-      case "Documento de identidad":
-        return const Icon(Icons.person);
-      case "Tarjeta Bancaria":
-        return const Icon(Icons.credit_card);
-      case "Reserva hotel":
-        return const Icon(Icons.hotel);
-      case "Reserva avión":
-        return const Icon(Icons.airplane_ticket);
-      case "Reserva evento":
-        return const Icon(Icons.event);
-      case "Método hospitalario":
-        return const Icon(Icons.local_hospital);
-      default:
-    }
   }
 }
