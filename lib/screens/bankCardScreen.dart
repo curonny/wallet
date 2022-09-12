@@ -7,25 +7,24 @@ import '../models/document.dart';
 import 'addItem.dart';
 import 'utils.dart';
 
-class PersonalDocumentsScreen extends StatefulWidget {
-  PersonalDocumentsScreen({Key? key}) : super(key: key);
+class TarjetasBancariasScreen extends StatefulWidget {
+  TarjetasBancariasScreen({Key? key}) : super(key: key);
 
   @override
-  State<PersonalDocumentsScreen> createState() =>
-      _PersonalDocumentsScreenState();
+  State<TarjetasBancariasScreen> createState() =>
+      _TarjetasBancariasScreenState();
 }
 
-class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
+class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
   DocumentController get documentController => Get.put(DocumentController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Documentos personales")),
+      appBar: AppBar(title: const Text("Tarjeta Bancarias")),
       body: getListDocuments(),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(),
-                arguments: {"category": "Documento de identidad"});
+            Get.to(AddDocument(), arguments: {"category": "Tarjeta Bancaria"});
           },
           label: const Text("Agregar")),
     );
@@ -34,16 +33,18 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
   getListDocuments() {
     RxInt index = 0.obs;
     index.value = documentController.listDocuments
-        .indexWhere((element) => element.categorie == "Documento de identidad");
+        .indexWhere((element) => element.categorie == "Tarjeta Bancaria");
     print(index);
     return Obx(
       () => index.value == -1
-          ? Column(
-              children: [
-                Lottie.asset("assets/lottie/scanning.json"),
-                const Text(
-                    "No ha registrado documentos de identificación. COMIENCE AHORA!")
-              ],
+          ? Center(
+              child: Column(
+                children: [
+                  Lottie.asset("assets/lottie/cards.json"),
+                  const Text(
+                      "No ha registrado tarjetas bancarias. COMIENCE AHORA!")
+                ],
+              ),
             )
           : Padding(
               padding: const EdgeInsets.all(8.0),
@@ -54,7 +55,7 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
                       Document documento =
                           documentController.listDocuments[index];
                       print(documento.categorie);
-                      if (documento.categorie == "Documento de identidad") {
+                      if (documento.categorie == "Tarjeta Bancaria") {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(

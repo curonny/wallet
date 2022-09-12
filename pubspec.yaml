@@ -40,6 +40,7 @@ dependencies:
   intl: ^0.17.0
   image_picker: ^0.8.5+3
   lottie: ^1.4.2
+  swipe_image_gallery: ^0.5.2
 
 
   # The following adds the Cupertino Icons font to your application.

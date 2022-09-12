@@ -10,6 +10,7 @@ import 'package:wallet/screens/personalDocumentsScreen.dart';
 import 'package:wallet/screens/utils.dart';
 
 import '../controllers/documentControllers.dart';
+import 'bankCardScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -76,8 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Tarjetas bancarias'),
               subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(TarjetasBancariasScreen());
               },
             ),
           ),
