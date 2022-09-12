@@ -21,7 +21,18 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Documentos personales")),
-      body: getListDocuments(),
+      body: Obx(() => documentController.listDocuments.isEmpty
+          ? Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Center(
+                  child: Column(
+                children: [
+                  Lottie.asset("assets/lottie/scanning.json"),
+                  const Text("No ha registrado documentos. COMIENCE AHORA!")
+                ],
+              )),
+            )
+          : getListDocuments()),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(AddDocument(),
@@ -38,13 +49,7 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
     print(index);
     return Obx(
       () => index.value == -1
-          ? Column(
-              children: [
-                Lottie.asset("assets/lottie/scanning.json"),
-                const Text(
-                    "No ha registrado documentos de identificación. COMIENCE AHORA!")
-              ],
-            )
+          ? Lottie.asset("assets/lottie/scanning.json")
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: Obx(
@@ -53,7 +58,6 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
                     itemBuilder: (context, index) {
                       Document documento =
                           documentController.listDocuments[index];
-                      print(documento.categorie);
                       if (documento.categorie == "Documento de identidad") {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -68,6 +72,12 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
                               ),
                               leading: getIconDocument(
                                   documento.categorie.toString()),
+                              trailing: IconButton(
+                                  onPressed: () {
+                                    print("a");
+                                    documentController.removeDocument(index);
+                                  },
+                                  icon: const Icon(Icons.delete)),
                               children: [],
                             ),
                           ),

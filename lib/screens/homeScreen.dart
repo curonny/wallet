@@ -11,6 +11,7 @@ import 'package:wallet/screens/utils.dart';
 
 import '../controllers/documentControllers.dart';
 import 'bankCardScreen.dart';
+import 'hospitalDocumentScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -85,12 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.local_hospital),
-              title: const Text('Métodos hospitalarios'),
+              title: const Text('Métodos médicos'),
               subtitle: const Text(
                   "Registre los métodos entregados en las consultas médicas"),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(HospitalDocumentScreen());
               },
             ),
           ),
@@ -179,6 +179,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       documento.categorie.toString(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
+                    trailing: IconButton(
+                        onPressed: () {
+                          print("a");
+                          documentController.removeDocument(index);
+                        },
+                        icon: const Icon(Icons.delete)),
                     leading: getIconDocument(documento.categorie.toString()),
                     children: [],
                   ),

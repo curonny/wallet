@@ -26,10 +26,19 @@ class DocumentController extends GetxController {
   RxString imageCardMain = "".obs;
   RxString imageCardSecondary = "".obs;
 
+  RxInt itemByType = 0.obs;
+
   @override
   Future<void> onInit() async {
     getItems();
     super.onInit();
+  }
+
+  removeDocument(int index) async {
+    var box = await Hive.openBox<Document>("documents");
+    box.deleteAt(index);
+    update();
+    getItems();
   }
 
   addDocument() async {
