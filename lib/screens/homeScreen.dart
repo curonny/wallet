@@ -8,6 +8,7 @@ import 'package:wallet/models/document.dart';
 import 'package:wallet/screens/addItem.dart';
 import 'package:wallet/screens/personalDocumentsScreen.dart';
 import 'package:wallet/screens/utils.dart';
+import 'package:wallet/screens/vuelosScreen.dart';
 
 import '../controllers/documentControllers.dart';
 import 'bankCardScreen.dart';
@@ -125,8 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Reservas vuelos'),
               subtitle: const Text("Registre sus reservas de vuelos"),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(VuelosScreen());
               },
             ),
           ),
