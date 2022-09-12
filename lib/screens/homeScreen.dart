@@ -268,20 +268,26 @@ class DocumentSearch extends SearchDelegate {
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(15),
-          child: Card(
-            elevation: 15,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: ListTile(
-              leading: const Icon(
-                CupertinoIcons.doc_text,
-                size: 40,
-              ),
-              title: Text(
-                suggestionList[index].nombre.toString(),
-                style: Theme.of(context).textTheme.bodyText1,
+        Document documento = suggestionList[index];
+        return InkWell(
+          onTap: () {
+            Get.to(ViewDocument(), arguments: {"item": documento});
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Card(
+              elevation: 15,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: ListTile(
+                leading: const Icon(
+                  CupertinoIcons.doc_text,
+                  size: 40,
+                ),
+                title: Text(
+                  documento.nombre.toString(),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
               ),
             ),
           ),
