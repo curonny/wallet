@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _ViewDocumentState extends State<ViewDocument> {
   @override
   Widget build(BuildContext context) {
     Document document = Get.arguments["item"];
+    print(document.imageFront.toString());
     return Scaffold(
       appBar: AppBar(title: Text(document.nombre.toString())),
       body: Padding(
@@ -34,7 +36,8 @@ class _ViewDocumentState extends State<ViewDocument> {
                 padding: const EdgeInsets.all(8.0),
                 child: Visibility(
                     visible: document.imageFront.toString().isNotEmpty,
-                    child: Image.file(File(document.imageFront.toString()))),
+                    child: Image.memory(
+                        base64Decode(document.imageFront.toString()))),
               ),
               onTap: () {
                 SwipeImageGallery(
@@ -42,9 +45,8 @@ class _ViewDocumentState extends State<ViewDocument> {
                   backgroundColor: Colors.black,
                   context: context,
                   itemBuilder: (context, index) {
-                    return Image.file(
-                      File(document.imageFront.toString()),
-                    );
+                    return Image.memory(
+                        base64Decode(document.imageFront.toString()));
                   },
                   itemCount: 1,
                 ).show();
@@ -55,7 +57,8 @@ class _ViewDocumentState extends State<ViewDocument> {
                   padding: const EdgeInsets.all(8.0),
                   child: Visibility(
                       visible: document.imageBack.toString().isNotEmpty,
-                      child: Image.file(File(document.imageBack.toString()))),
+                      child: Image.memory(
+                          base64Decode(document.imageBack.toString()))),
                 ),
                 onTap: () {
                   SwipeImageGallery(
@@ -63,9 +66,8 @@ class _ViewDocumentState extends State<ViewDocument> {
                     backgroundColor: Colors.black,
                     context: context,
                     itemBuilder: (context, index) {
-                      return Image.file(
-                        File(document.imageBack.toString()),
-                      );
+                      return Image.memory(
+                          base64Decode(document.imageBack.toString()));
                     },
                     itemCount: 1,
                   ).show();

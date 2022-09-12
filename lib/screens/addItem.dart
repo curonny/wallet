@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -221,8 +222,8 @@ class _AddDocumentState extends State<AddDocument> {
                   Obx(
                     () => Visibility(
                         visible: documentController.imageCardMain.value != "",
-                        child: Image.file(
-                            File(documentController.imageCardMain.value))),
+                        child: Image.memory(base64Decode(
+                            documentController.imageCardMain.toString()))),
                   )
                 ],
               ),
@@ -359,11 +360,11 @@ class _AddDocumentState extends State<AddDocument> {
     if (type == "main") {
       if (imageFile != null) {
         File file = File(imageFile.path.toString());
-        File local = await file.copy('$path/${imageFile.name}');
-        print(imageFile.path);
-        print(local.path);
-        documentController.imageCardMain.value = local.path.toString();
-        documentController.txtImageFront.text = local.path.toString();
+        Uint8List bytes = file.readAsBytesSync();
+        String base64Image = base64Encode(bytes);
+
+        documentController.imageCardMain.value = base64Image;
+        documentController.txtImageFront.text = base64Image;
         Get.back();
       }
     }
@@ -391,8 +392,6 @@ class _AddDocumentState extends State<AddDocument> {
       if (imageFile != null) {
         File file = File(imageFile.path.toString());
         File local = await file.copy('$path/${imageFile.name}');
-        print(imageFile.path);
-        print(local.path);
         documentController.imageCardMain.value = local.path.toString();
         documentController.txtImageFront.text = local.path.toString();
         Get.back();

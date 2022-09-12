@@ -182,8 +182,6 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: documentController.listDocuments.length,
             itemBuilder: (context, index) {
               Document documento = documentController.listDocuments[index];
-              print(documento.imageFront.toString());
-              print(index);
               return GestureDetector(
                 onTap: () {
                   Get.to(ViewDocument(), arguments: {"item": documento});
@@ -194,9 +192,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     elevation: 1,
                     child: ListTile(
                       title: Text(documento.nombre.toString()),
-                      subtitle: Text(
-                        documento.categorie.toString(),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      subtitle: Column(
+                        children: [
+                          Text(
+                            documento.categorie.toString(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(DateFormat.yMMMd().format(
+                              DateTime.parse(documento.date.toString())))
+                        ],
                       ),
                       trailing: IconButton(
                           onPressed: () {
