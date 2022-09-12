@@ -68,7 +68,7 @@ class _AboutUsState extends State<AboutUs> {
             ),
             const Divider(),
             Text(
-              "Creditos de MiWallet",
+              "Créditos de MiWallet",
               style: Theme.of(context).textTheme.bodyText1,
             ),
             Padding(

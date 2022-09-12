@@ -49,7 +49,13 @@ class _AddDocumentState extends State<AddDocument> {
                 style: const TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                documentController.addDocument();
+                if (documentController.imageCardMain.value == '') {
+                  Get.snackbar("Error",
+                      "Debe adicionar al menos una imagen al documento",
+                      backgroundColor: Colors.red);
+                } else {
+                  documentController.addDocument();
+                }
               },
             ),
           ),
@@ -85,7 +91,7 @@ class _AddDocumentState extends State<AddDocument> {
                 keyboardType: TextInputType.text,
                 cursorColor: Get.theme.colorScheme.primary,
                 decoration: const InputDecoration(
-                  hintText: "Mi documento de identidad",
+                  hintText: "Nombre del documento",
                 ),
               ),
             ),
@@ -137,7 +143,7 @@ class _AddDocumentState extends State<AddDocument> {
                     onPressed: () {
                       Get.bottomSheet(
                         Container(
-                          height: 150,
+                          height: 200,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(20),
