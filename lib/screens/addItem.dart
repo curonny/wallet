@@ -5,6 +5,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:wallet/controllers/documentControllers.dart';
 
 class AddDocument extends StatefulWidget {
@@ -19,16 +20,9 @@ class _AddDocumentState extends State<AddDocument> {
   @override
   Widget build(BuildContext context) {
     String categoryContext = Get.arguments["category"];
-    print(categoryContext);
     if (categoryContext.isNotEmpty) {
       documentController.txtCategory.text = categoryContext.toString();
       documentController.category.value = categoryContext.toString();
-    }
-
-    @override
-    void dispose() {
-      super.dispose();
-      // Get.delete<CardController>();
     }
 
     return Scaffold(
@@ -348,32 +342,39 @@ class _AddDocumentState extends State<AddDocument> {
   }
 
   _getFromGallery(String type) async {
-    print(type);
+    final String path = (await getApplicationDocumentsDirectory()).path;
     ImagePicker imagePicker = ImagePicker();
     final imageFile = await imagePicker.pickImage(
       source: ImageSource.gallery,
       maxWidth: 512,
       maxHeight: 512,
     );
+
     if (type == "main") {
       if (imageFile != null) {
-        documentController.imageCardMain.value = imageFile.path.toString();
-        documentController.txtImageFront.text = imageFile.path.toString();
+        File file = File(imageFile.path.toString());
+        File local = await file.copy('$path/${imageFile.name}');
+        print(imageFile.path);
+        print(local.path);
+        documentController.imageCardMain.value = local.path.toString();
+        documentController.txtImageFront.text = local.path.toString();
         Get.back();
       }
     }
 
     if (type == "back") {
       if (imageFile != null) {
-        documentController.imageCardSecondary.value = imageFile.path.toString();
-        documentController.txtImageBack.text = imageFile.path.toString();
+        File file = File(imageFile.path.toString());
+        File local = await file.copy('$path/${imageFile.name}');
+        documentController.imageCardSecondary.value = local.path.toString();
+        documentController.txtImageBack.text = local.path.toString();
         Get.back();
       }
     }
   }
 
   _getFromCamera(String type) async {
-    print(type);
+    final String path = (await getApplicationDocumentsDirectory()).path;
     ImagePicker imagePicker = ImagePicker();
     final imageFile = await imagePicker.pickImage(
       source: ImageSource.camera,
@@ -382,16 +383,22 @@ class _AddDocumentState extends State<AddDocument> {
     );
     if (type == "main") {
       if (imageFile != null) {
-        documentController.imageCardMain.value = imageFile.path.toString();
-        documentController.txtImageFront.text = imageFile.path.toString();
+        File file = File(imageFile.path.toString());
+        File local = await file.copy('$path/${imageFile.name}');
+        print(imageFile.path);
+        print(local.path);
+        documentController.imageCardMain.value = local.path.toString();
+        documentController.txtImageFront.text = local.path.toString();
         Get.back();
       }
     }
 
     if (type == "back") {
       if (imageFile != null) {
-        documentController.imageCardSecondary.value = imageFile.path.toString();
-        documentController.txtImageBack.text = imageFile.path.toString();
+        File file = File(imageFile.path.toString());
+        File local = await file.copy('$path/${imageFile.name}');
+        documentController.imageCardSecondary.value = local.path.toString();
+        documentController.txtImageBack.text = local.path.toString();
         Get.back();
       }
     }

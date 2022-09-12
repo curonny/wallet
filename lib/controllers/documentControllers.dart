@@ -73,6 +73,7 @@ class DocumentController extends GetxController {
     txtDate.text = "";
     txtImageBack.text = "";
     txtImageFront.text = "";
+    txtCategory.text = "";
     imageCardMain.value = "";
     imageCardSecondary.value = "";
   }
