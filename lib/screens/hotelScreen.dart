@@ -25,7 +25,8 @@ class _HotelScreenState extends State<HotelScreen> {
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/hotel.json"),
+                  Lottie.asset("assets/lottie/hotel.json",
+                      height: 250, width: 250),
                   const Text(
                       "No ha registrado reserva de hoteles. COMIENCE AHORA!")
                 ],

@@ -27,7 +27,8 @@ class _HospitalDocumentScreenState extends State<HospitalDocumentScreen> {
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/hospital.json"),
+                  Lottie.asset("assets/lottie/hospital.json",
+                      height: 250, width: 250),
                   const Text(
                       "No ha registrado documentos médicos. COMIENCE AHORA!")
                 ],

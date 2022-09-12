@@ -28,7 +28,8 @@ class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/cards.json"),
+                  Lottie.asset("assets/lottie/cards.json",
+                      height: 250, width: 250),
                   const Text(
                       "No ha registrado tarjetas bancarias. COMIENCE AHORA!")
                 ],

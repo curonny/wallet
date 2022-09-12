@@ -25,7 +25,8 @@ class _EventScreenState extends State<EventScreen> {
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/time.json"),
+                  Lottie.asset("assets/lottie/time.json",
+                      height: 250, width: 250),
                   const Text(
                       "No ha registrado reserva de eventos. COMIENCE AHORA!")
                 ],

@@ -28,7 +28,8 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/scanning.json"),
+                  Lottie.asset("assets/lottie/scanning.json",
+                      height: 250, width: 250),
                   const Text("No ha registrado documentos. COMIENCE AHORA!")
                 ],
               )),

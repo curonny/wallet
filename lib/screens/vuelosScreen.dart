@@ -25,7 +25,8 @@ class _VuelosScreenState extends State<VuelosScreen> {
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/plane.json"),
+                  Lottie.asset("assets/lottie/plane.json",
+                      height: 250, width: 250),
                   const Text(
                       "No ha registrado reserva de vuelos. COMIENCE AHORA!")
                 ],

@@ -26,6 +26,7 @@ class DocumentController extends GetxController {
   RxString imageCardMain = "".obs;
   RxString imageCardSecondary = "".obs;
 
+  RxBool isLoading = false.obs;
   RxInt itemByType = 0.obs;
 
   @override
@@ -59,9 +60,11 @@ class DocumentController extends GetxController {
   }
 
   getItems() async {
+    isLoading.value = true;
     final box = await Hive.openBox<Document>("documents");
     listDocuments.value = box.values.toList();
     listDocuments.sort((a, b) => b.date!.compareTo(a.date!));
+    isLoading.value = false;
     update();
   }
 

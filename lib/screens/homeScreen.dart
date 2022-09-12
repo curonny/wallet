@@ -142,15 +142,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ]),
       ),
-      body: Obx(() => documentController.listDocuments.isEmpty
-          ? Center(
-              child: Column(
-              children: [
-                Lottie.asset("assets/lottie/ticket.json"),
-                const Text("No ha registrado documentos. COMIENCE AHORA!")
-              ],
-            ))
-          : getListDocuments()),
+      body: Obx(() => documentController.isLoading.value
+          ? const Center(child: CircularProgressIndicator())
+          : Obx(() => documentController.listDocuments.isEmpty
+              ? Center(
+                  child: Column(
+                  children: [
+                    Lottie.asset("assets/lottie/ticket.json",
+                        height: 250, width: 250),
+                    const Text("No ha registrado documentos. COMIENCE AHORA!")
+                  ],
+                ))
+              : getListDocuments())),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(AddDocument(), arguments: {"category": ""});
