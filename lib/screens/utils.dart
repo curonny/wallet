@@ -27,7 +27,7 @@ getIconDocument(String string) {
 
 openWhatsapp(String whatsapp) async {
   var whatsappURLiOS =
-      "https://wa.me/$whatsapp?text=${Uri.parse('Sugerencias sobre HabanaTrans ios')}";
+      "https://wa.me/$whatsapp?text=${Uri.parse('Sugerencias sobre MiWallet')}";
   if (await canLaunch(whatsappURLiOS)) {
     await launch(whatsappURLiOS, forceSafariVC: false);
   }
@@ -35,7 +35,7 @@ openWhatsapp(String whatsapp) async {
 
 openTelegram(String telegram) async {
   var telegramURLiOS =
-      "https://t.me/$telegram?text=${Uri.parse('Sugerencias sobre HabanaTrans ios')}";
+      "https://t.me/$telegram?text=${Uri.parse('Sugerencias sobre MiWallet')}";
   if (await canLaunch(telegramURLiOS)) {
     await launch(telegramURLiOS, forceSafariVC: false);
   }
