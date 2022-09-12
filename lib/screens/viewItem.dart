@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:swipe_image_gallery/swipe_image_gallery.dart';
 import 'package:wallet/models/document.dart';
 
@@ -21,6 +22,12 @@ class _ViewDocumentState extends State<ViewDocument> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Text(
+            "Registro creado el: ".tr,
+            style: Get.theme.textTheme.bodyText2,
+          ),
+          Text(DateFormat.yMMMd()
+              .format(DateTime.parse(document.date.toString()))),
           InkWell(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
