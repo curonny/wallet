@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -19,6 +20,9 @@ class _ViewDocumentState extends State<ViewDocument> {
   Widget build(BuildContext context) {
     Document document = Get.arguments["item"];
     print(document.imageFront.toString());
+
+    StreamController<Widget> overlayController =
+        StreamController<Widget>.broadcast();
     return Scaffold(
       appBar: AppBar(title: Text(document.nombre.toString())),
       body: Padding(
@@ -41,12 +45,31 @@ class _ViewDocumentState extends State<ViewDocument> {
               ),
               onTap: () {
                 SwipeImageGallery(
+                  overlayController: overlayController,
                   initialIndex: 0,
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.white,
                   context: context,
                   itemBuilder: (context, index) {
-                    return Image.memory(
-                        base64Decode(document.imageFront.toString()));
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.memory(
+                            base64Decode(document.imageFront.toString())),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                              child: InkWell(
+                            child: const Text(
+                              "Cerrar",
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            onTap: () {
+                              Get.back();
+                            },
+                          )),
+                        )
+                      ],
+                    );
                   },
                   itemCount: 1,
                 ).show();
@@ -62,12 +85,31 @@ class _ViewDocumentState extends State<ViewDocument> {
                 ),
                 onTap: () {
                   SwipeImageGallery(
+                    overlayController: overlayController,
                     initialIndex: 0,
-                    backgroundColor: Colors.black,
+                    backgroundColor: Colors.white,
                     context: context,
                     itemBuilder: (context, index) {
-                      return Image.memory(
-                          base64Decode(document.imageBack.toString()));
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.memory(
+                              base64Decode(document.imageBack.toString())),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: InkWell(
+                              child: const Text(
+                                "Cerrar",
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              onTap: () {
+                                Get.back();
+                              },
+                            )),
+                          )
+                        ],
+                      );
                     },
                     itemCount: 1,
                   ).show();
