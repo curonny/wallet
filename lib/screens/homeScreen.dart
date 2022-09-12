@@ -13,6 +13,7 @@ import '../controllers/documentControllers.dart';
 import 'bankCardScreen.dart';
 import 'eventScreen.dart';
 import 'hospitalDocumentScreen.dart';
+import 'hotelScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -113,8 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Reservas hoteleras'),
               subtitle: const Text("Registre sus reservas de hoteles"),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Get.to(HotelScreen());
               },
             ),
           ),
