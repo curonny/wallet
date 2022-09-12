@@ -334,8 +334,9 @@ class _AddDocumentState extends State<AddDocument> {
                                 visible: documentController
                                         .imageCardSecondary.value !=
                                     "",
-                                child: Image.file(File(documentController
-                                    .imageCardSecondary.value))),
+                                child: Image.memory(base64Decode(
+                                    documentController.imageCardSecondary
+                                        .toString()))),
                           )
                         ],
                       ),
@@ -362,7 +363,6 @@ class _AddDocumentState extends State<AddDocument> {
         File file = File(imageFile.path.toString());
         Uint8List bytes = file.readAsBytesSync();
         String base64Image = base64Encode(bytes);
-
         documentController.imageCardMain.value = base64Image;
         documentController.txtImageFront.text = base64Image;
         Get.back();
@@ -372,9 +372,10 @@ class _AddDocumentState extends State<AddDocument> {
     if (type == "back") {
       if (imageFile != null) {
         File file = File(imageFile.path.toString());
-        File local = await file.copy('$path/${imageFile.name}');
-        documentController.imageCardSecondary.value = local.path.toString();
-        documentController.txtImageBack.text = local.path.toString();
+        Uint8List bytes = file.readAsBytesSync();
+        String base64Image = base64Encode(bytes);
+        documentController.imageCardSecondary.value = base64Image;
+        documentController.txtImageBack.text = base64Image;
         Get.back();
       }
     }
@@ -391,9 +392,10 @@ class _AddDocumentState extends State<AddDocument> {
     if (type == "main") {
       if (imageFile != null) {
         File file = File(imageFile.path.toString());
-        File local = await file.copy('$path/${imageFile.name}');
-        documentController.imageCardMain.value = local.path.toString();
-        documentController.txtImageFront.text = local.path.toString();
+        Uint8List bytes = file.readAsBytesSync();
+        String base64Image = base64Encode(bytes);
+        documentController.imageCardMain.value = base64Image;
+        documentController.txtImageFront.text = base64Image;
         Get.back();
       }
     }
@@ -401,9 +403,10 @@ class _AddDocumentState extends State<AddDocument> {
     if (type == "back") {
       if (imageFile != null) {
         File file = File(imageFile.path.toString());
-        File local = await file.copy('$path/${imageFile.name}');
-        documentController.imageCardSecondary.value = local.path.toString();
-        documentController.txtImageBack.text = local.path.toString();
+        Uint8List bytes = file.readAsBytesSync();
+        String base64Image = base64Encode(bytes);
+        documentController.imageCardSecondary.value = base64Image;
+        documentController.txtImageBack.text = base64Image;
         Get.back();
       }
     }
