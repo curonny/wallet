@@ -32,7 +32,8 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
           : getListDocuments()),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument());
+            Get.to(AddDocument(),
+                arguments: {"category": "Documento de identidad"});
           },
           label: const Text("Agregar")),
     );

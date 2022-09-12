@@ -43,6 +43,7 @@ class DocumentController extends GetxController {
       var box = await Hive.openBox<Document>("documents");
       await box.put(DateTime.now().toString(), item);
       update();
+      clearController();
       getItems();
       Get.back();
     }
@@ -53,5 +54,15 @@ class DocumentController extends GetxController {
     listDocuments.value = box.values.toList();
     listDocuments.sort((a, b) => b.date!.compareTo(a.date!));
     update();
+  }
+
+  void clearController() {
+    category.value = "";
+    txtNombre.text = "";
+    txtDate.text = "";
+    txtImageBack.text = "";
+    txtImageFront.text = "";
+    imageCardMain.value = "";
+    imageCardSecondary.value = "";
   }
 }

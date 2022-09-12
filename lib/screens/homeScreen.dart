@@ -20,6 +20,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   DocumentController get documentController => Get.put(DocumentController());
+
+  @override
+  void dispose() {
+    super.dispose();
+    // Get.delete<CardController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
           : getListDocuments()),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument());
+            Get.to(AddDocument(), arguments: {"category": ""});
           },
           label: const Text("Agregar")),
     );

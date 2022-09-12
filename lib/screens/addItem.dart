@@ -18,6 +18,19 @@ class _AddDocumentState extends State<AddDocument> {
   DocumentController get documentController => Get.put(DocumentController());
   @override
   Widget build(BuildContext context) {
+    String categoryContext = Get.arguments["category"];
+    print(categoryContext);
+    if (categoryContext.isNotEmpty) {
+      documentController.txtCategory.text = categoryContext.toString();
+      documentController.category.value = categoryContext.toString();
+    }
+
+    @override
+    void dispose() {
+      super.dispose();
+      // Get.delete<CardController>();
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Adicionar documento"),
