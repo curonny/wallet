@@ -208,7 +208,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             print(index);
                             documentController.removeDocument(index);
                           },
-                          icon: const Icon(Icons.delete)),
+                          icon: const Icon(
+                            Icons.delete,
+                            size: 20,
+                          )),
                       leading: getIconDocument(documento.categorie.toString()),
                     ),
                   ),
