@@ -54,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(children: [
           UserAccountsDrawerHeader(
             accountName: const Text("RWallet"),
-            accountEmail: const Text("Tu billetera para todos los documentos"),
+            accountEmail: const Expanded(
+                child: Text("Tu billetera para todos los documentos")),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
                   ? Colors.blue
