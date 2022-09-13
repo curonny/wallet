@@ -28,7 +28,7 @@ getListDocuments(
                     if (documento.categorie == category.toString()) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(ViewDocument(),
+                          Get.to(() => ViewDocument(),
                               arguments: {"item": documento});
                         },
                         child: Padding(

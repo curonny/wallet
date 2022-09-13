@@ -35,7 +35,8 @@ class _EventScreenState extends State<EventScreen> {
           : getListDocuments("Reserva evento", documentController, "time")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(), arguments: {"category": "Reserva evento"});
+            Get.to(() => AddDocument(),
+                arguments: {"category": "Reserva evento"});
           },
           label: const Text("Agregar")),
     );

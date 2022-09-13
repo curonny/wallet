@@ -35,7 +35,8 @@ class _VuelosScreenState extends State<VuelosScreen> {
           : getListDocuments("Reserva avión", documentController, "plane")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(), arguments: {"category": "Reserva avión"});
+            Get.to(() => AddDocument(),
+                arguments: {"category": "Reserva avión"});
           },
           label: const Text("Agregar")),
     );

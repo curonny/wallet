@@ -35,7 +35,8 @@ class _HotelScreenState extends State<HotelScreen> {
           : getListDocuments("Reserva hotel", documentController, "hotel")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(), arguments: {"category": "Reserva hotel"});
+            Get.to(() => AddDocument(),
+                arguments: {"category": "Reserva hotel"});
           },
           label: const Text("Agregar")),
     );

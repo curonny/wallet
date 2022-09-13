@@ -21,7 +21,7 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Documentos personales")),
+      appBar: AppBar(title: const Text("Personales")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
@@ -38,7 +38,7 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
               "Documento de identidad", documentController, "scanning")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(),
+            Get.to(() => AddDocument(),
                 arguments: {"category": "Documento de identidad"});
           },
           label: const Text("Agregar")),

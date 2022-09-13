@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(children: [
           UserAccountsDrawerHeader(
-            accountName: const Text("MiWallet"),
+            accountName: const Text("RWallet"),
             accountEmail: const Text("Tu billetera para todos los documentos"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.credit_card),
               title: const Text('Todas'),
               onTap: () {
-                Get.to(HomeScreen());
+                Get.to(() => HomeScreen());
               },
             ),
           ),
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               subtitle: const Text(
                   "Registre sus documentos personales (Documento identidad, Pasaporte)"),
               onTap: () {
-                Get.to(PersonalDocumentsScreen());
+                Get.to(() => PersonalDocumentsScreen());
               },
             ),
           ),
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Tarjetas bancarias'),
               subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
               onTap: () {
-                Get.to(TarjetasBancariasScreen());
+                Get.to(() => TarjetasBancariasScreen());
               },
             ),
           ),
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               subtitle: const Text(
                   "Registre los métodos entregados en las consultas médicas"),
               onTap: () {
-                Get.to(HospitalDocumentScreen());
+                Get.to(() => HospitalDocumentScreen());
               },
             ),
           ),
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Reserva eventos'),
               subtitle: const Text("Registre sus reservas de eventos"),
               onTap: () {
-                Get.to(EventScreen());
+                Get.to(() => EventScreen());
               },
             ),
           ),
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Reservas hoteleras'),
               subtitle: const Text("Registre sus reservas de hoteles"),
               onTap: () {
-                Get.to(HotelScreen());
+                Get.to(() => HotelScreen());
               },
             ),
           ),
@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Reservas vuelos'),
               subtitle: const Text("Registre sus reservas de vuelos"),
               onTap: () {
-                Get.to(VuelosScreen());
+                Get.to(() => VuelosScreen());
               },
             ),
           ),
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.info),
               title: const Text('Sobre nosotros'),
               onTap: () {
-                Get.to(AboutUs());
+                Get.to(() => AboutUs());
               },
             ),
           ),
@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : getListDocuments())),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(), arguments: {"category": ""});
+            Get.to(() => AddDocument(), arguments: {"category": ""});
           },
           label: const Text("Agregar")),
     );
@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Document documento = documentController.listDocuments[index];
               return GestureDetector(
                 onTap: () {
-                  Get.to(ViewDocument(), arguments: {"item": documento});
+                  Get.to(() => ViewDocument(), arguments: {"item": documento});
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -276,7 +276,7 @@ class DocumentSearch extends SearchDelegate {
         Document documento = suggestionList[index];
         return InkWell(
           onTap: () {
-            Get.to(ViewDocument(), arguments: {"item": documento});
+            Get.to(() => ViewDocument(), arguments: {"item": documento});
           },
           child: Padding(
             padding: const EdgeInsets.all(15),

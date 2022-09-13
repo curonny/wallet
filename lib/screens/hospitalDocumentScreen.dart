@@ -38,7 +38,7 @@ class _HospitalDocumentScreenState extends State<HospitalDocumentScreen> {
               "Método hospitalario", documentController, "hospital")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(),
+            Get.to(() => AddDocument(),
                 arguments: {"category": "Método hospitalario"});
           },
           label: const Text("Agregar")),

@@ -38,7 +38,8 @@ class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
           : getListDocuments("Tarjeta Bancaria", documentController, "cards")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(AddDocument(), arguments: {"category": "Tarjeta Bancaria"});
+            Get.to(() => AddDocument(),
+                arguments: {"category": "Tarjeta Bancaria"});
           },
           label: const Text("Agregar")),
     );
