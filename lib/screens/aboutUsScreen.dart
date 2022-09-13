@@ -54,10 +54,10 @@ class _AboutUsState extends State<AboutUs> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Center(
                         child: Text(
-                          "Billetera electrónica para llevar siempre todos los documentos.",
+                          "Billetera electrónica que funciona de forma offline. Permite al usuario llevar siempre documentos importantes como documentos de identidad, reservas y papeles médicos",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
