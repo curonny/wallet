@@ -56,11 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
           UserAccountsDrawerHeader(
             accountName: const Text("DWallet"),
             accountEmail: const Text(
-              "",
-              maxLines: 1,
+              "La billetera electrónica para tus documentos",
+              maxLines: 2,
             ),
             currentAccountPicture: CircleAvatar(
-              radius: 60,
+              radius: 100,
               backgroundColor: Colors.blue,
               child: Image.asset("assets/image/playstore.png"),
             ),
@@ -81,8 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListTile(
               leading: const Icon(CupertinoIcons.person),
               title: const Text('Documentos de identidad'),
-              subtitle: const Text(
-                  "Registre sus documentos personales (Documento identidad, Pasaporte)"),
+              subtitle:
+                  const Text("Registre su documento identidad y pasaporte"),
               onTap: () {
                 Get.to(() => PersonalDocumentsScreen());
               },
@@ -104,8 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListTile(
               leading: const Icon(Icons.local_hospital),
               title: const Text('Documentos médicos'),
-              subtitle: const Text(
-                  "Registre los métodos entregados en las consultas médicas"),
+              subtitle: const Text("Registre documentos médicos"),
               onTap: () {
                 Get.to(() => HospitalDocumentScreen());
               },

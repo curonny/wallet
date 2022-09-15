@@ -47,19 +47,20 @@ class _AboutUsState extends State<AboutUs> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Version 1.0.0",
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                    Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Center(
                         child: Text(
-                          "Billetera electrónica que funciona de forma offline. Te permite tener a mano los documentos más importantes",
+                          "Su billetera electrónica para documentos y papeles importantes",
+                          textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Versión 1.0.0",
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
                   ],
@@ -87,31 +88,40 @@ class _AboutUsState extends State<AboutUs> {
                           ),
                           Expanded(
                             child: ListTile(
-                              leading: IconButton(
-                                onPressed: () {
-                                  openTelegram("curonny");
-                                },
-                                icon: Image.asset(
-                                  "assets/image/ic_telegram.png",
-                                  height: 200,
-                                ),
-                              ),
                               title: Text(
-                                "Yaritza Delgado Cabeza",
+                                "Yari Delgado",
                                 style: Theme.of(context).textTheme.bodyText1,
                               ),
                               subtitle: const Text(
                                 "Diseñadora",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: IconButton(
-                                  onPressed: () {
-                                    openWhatsapp("+5358129890");
-                                  },
-                                  icon: Image.asset(
-                                    "assets/image/ic_whatsapp.png",
-                                    height: 180,
-                                  )),
+                              trailing: Expanded(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      child: Image.asset(
+                                        "assets/image/ic_whatsapp.png",
+                                        height: 20,
+                                      ),
+                                      onTap: () {
+                                        openWhatsapp("+5358129890");
+                                      },
+                                    ),
+                                    InkWell(
+                                      child: Image.asset(
+                                        "assets/image/ic_telegram.png",
+                                        height: 20,
+                                      ),
+                                      onTap: () {
+                                        openTelegram("curonny");
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           )
                         ],
@@ -137,31 +147,40 @@ class _AboutUsState extends State<AboutUs> {
                           ),
                           Expanded(
                             child: ListTile(
-                              leading: IconButton(
-                                onPressed: () {
-                                  openTelegram("curonny");
-                                },
-                                icon: Image.asset(
-                                  "assets/image/ic_telegram.png",
-                                  height: 200,
-                                ),
-                              ),
                               title: Text(
-                                "Ing. Ronny Montano Martínez",
+                                "Ing. Ronny Montano",
                                 style: Theme.of(context).textTheme.bodyText1,
                               ),
                               subtitle: const Text(
                                 "Desarrollador",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              trailing: IconButton(
-                                  onPressed: () {
-                                    openWhatsapp("+5358129890");
-                                  },
-                                  icon: Image.asset(
-                                    "assets/image/ic_whatsapp.png",
-                                    height: 180,
-                                  )),
+                              trailing: Expanded(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      child: Image.asset(
+                                        "assets/image/ic_whatsapp.png",
+                                        height: 20,
+                                      ),
+                                      onTap: () {
+                                        openWhatsapp("+5358129890");
+                                      },
+                                    ),
+                                    InkWell(
+                                      child: Image.asset(
+                                        "assets/image/ic_telegram.png",
+                                        height: 20,
+                                      ),
+                                      onTap: () {
+                                        openTelegram("curonny");
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           )
                         ],
