@@ -18,7 +18,7 @@ class _OhtersScreenState extends State<OhtersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Misceláneos")),
+      appBar: AppBar(title: const Text("Otros")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
@@ -32,10 +32,10 @@ class _OhtersScreenState extends State<OhtersScreen> {
                 ],
               )),
             )
-          : getListDocuments("Otra", documentController, "other")),
+          : getListDocuments("Otros", documentController, "other")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(() => AddDocument(), arguments: {"category": "Otra"});
+            Get.to(() => AddDocument(), arguments: {"category": "Otros"});
           },
           label: const Text("Agregar")),
     );

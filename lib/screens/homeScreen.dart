@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.ads_click_outlined),
-              title: const Text('Otras'),
+              title: const Text('Otros'),
               subtitle: const Text("Registre cualquier documento"),
               onTap: () {
                 Get.to(() => OhtersScreen());

@@ -11,7 +11,7 @@ class DocumentController extends GetxController {
     "Reserva avión",
     "Reserva evento",
     "Documento médico",
-    "Otra"
+    "Otros"
   ].obs;
 
   RxString category = "".obs;

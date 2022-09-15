@@ -8,13 +8,14 @@ import 'package:url_launcher/url_launcher.dart';
 // "Reserva evento",
 // "Método hospitalario"
 getIconDocument(String string) {
+  print(string);
   switch (string) {
     case "Documento de identidad":
       return const Icon(
         Icons.person,
         size: 30,
       );
-    case "Tarjeta Bancaria":
+    case "Documento Bancario":
       return const Icon(
         Icons.credit_card,
         size: 30,
@@ -34,9 +35,14 @@ getIconDocument(String string) {
         Icons.event,
         size: 30,
       );
-    case "Método hospitalario":
+    case "Documento médico":
       return const Icon(
         Icons.local_hospital,
+        size: 30,
+      );
+    case "Otra":
+      return const Icon(
+        Icons.ads_click_outlined,
         size: 30,
       );
     default:

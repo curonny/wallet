@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
+  apklis_payment_checker:
+    dependency: "direct main"
+    description:
+      name: apklis_payment_checker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   archive:
     dependency: transitive
     description:
@@ -176,6 +183,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.3"
+  device_apps_null_safety:
+    dependency: transitive
+    description:
+      name: device_apps_null_safety
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   dots_indicator:
     dependency: transitive
     description:
