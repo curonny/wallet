@@ -6,11 +6,12 @@ import 'package:wallet/models/document.dart';
 class DocumentController extends GetxController {
   RxList<String> listCategories = <String>[
     "Documento de identidad",
-    "Tarjeta Bancaria",
+    "Documento Bancario",
     "Reserva hotel",
     "Reserva avión",
     "Reserva evento",
-    "Método hospitalario"
+    "Documento médico",
+    "Otra"
   ].obs;
 
   RxString category = "".obs;

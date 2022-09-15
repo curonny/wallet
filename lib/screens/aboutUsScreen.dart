@@ -36,11 +36,11 @@ class _AboutUsState extends State<AboutUs> {
                           Center(
                             child: Image.asset(
                               "assets/image/playstore.png",
-                              height: 120,
+                              height: 150,
                             ),
                           ),
                           Text(
-                            "RWallet",
+                            "DWallet",
                             style: Theme.of(context).textTheme.headline6,
                           ),
                         ],
@@ -57,7 +57,7 @@ class _AboutUsState extends State<AboutUs> {
                       padding: const EdgeInsets.all(10.0),
                       child: Center(
                         child: Text(
-                          "Billetera electrónica que funciona de forma offline. Permite al usuario llevar siempre documentos importantes como documentos de identidad, reservas y papeles médicos",
+                          "Billetera electrónica que funciona de forma offline. Te permite tener a mano los documentos más importantes",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
@@ -68,8 +68,58 @@ class _AboutUsState extends State<AboutUs> {
             ),
             const Divider(),
             Text(
-              "Créditos de RWallet",
+              "Créditos de DWallet",
               style: Theme.of(context).textTheme.bodyText1,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 20,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/image/icon_design.png",
+                            height: 50,
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              leading: IconButton(
+                                onPressed: () {
+                                  openTelegram("curonny");
+                                },
+                                icon: Image.asset(
+                                  "assets/image/ic_telegram.png",
+                                  height: 200,
+                                ),
+                              ),
+                              title: Text(
+                                "Yaritza Delgado Cabeza",
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                              subtitle: const Text(
+                                "Diseñadora",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              trailing: IconButton(
+                                  onPressed: () {
+                                    openWhatsapp("+5358129890");
+                                  },
+                                  icon: Image.asset(
+                                    "assets/image/ic_whatsapp.png",
+                                    height: 180,
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -120,7 +170,7 @@ class _AboutUsState extends State<AboutUs> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:wallet/screens/addItem.dart';
-import 'package:wallet/widgets/itemsByCateg.dart';
 
 import '../controllers/documentControllers.dart';
+import '../widgets/itemsByCateg.dart';
+import 'addItem.dart';
 
-class EventScreen extends StatefulWidget {
-  EventScreen({Key? key}) : super(key: key);
+class OhtersScreen extends StatefulWidget {
+  OhtersScreen({Key? key}) : super(key: key);
 
   @override
-  State<EventScreen> createState() => _EventScreenState();
+  State<OhtersScreen> createState() => _OhtersScreenState();
 }
 
-class _EventScreenState extends State<EventScreen> {
+class _OhtersScreenState extends State<OhtersScreen> {
   DocumentController get documentController => Get.put(DocumentController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Reservas evento")),
+      appBar: AppBar(title: const Text("Misceláneos")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
               child: Center(
                   child: Column(
                 children: [
-                  Lottie.asset("assets/lottie/time.json",
+                  Lottie.asset("assets/lottie/other.json",
                       height: 250, width: 250),
                   const Text(
-                      "No ha registrado reserva de eventos. COMIENCE AHORA!")
+                      "No ha registrado documentos misceláneos. COMIENCE AHORA!")
                 ],
               )),
             )
-          : getListDocuments("Reserva evento", documentController, "time")),
+          : getListDocuments("Otra", documentController, "other")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Get.to(() => AddDocument(),
-                arguments: {"category": "Reserva evento"});
+            Get.to(() => AddDocument(), arguments: {"category": "Otra"});
           },
           label: const Text("Agregar")),
     );

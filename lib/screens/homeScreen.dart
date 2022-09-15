@@ -17,6 +17,7 @@ import 'bankCardScreen.dart';
 import 'eventScreen.dart';
 import 'hospitalDocumentScreen.dart';
 import 'hotelScreen.dart';
+import 'otherScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -53,13 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Drawer(
         child: ListView(children: [
           UserAccountsDrawerHeader(
-            accountName: const Text("RWallet"),
-            accountEmail: const Expanded(
-                child: Text("Tu billetera para todos los documentos")),
+            accountName: const Text("DWallet"),
+            accountEmail: const Text(
+              "",
+              maxLines: 1,
+            ),
             currentAccountPicture: CircleAvatar(
-              backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
-                  ? Colors.blue
-                  : Colors.white,
+              radius: 60,
+              backgroundColor: Colors.blue,
               child: Image.asset("assets/image/playstore.png"),
             ),
           ),
@@ -78,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(CupertinoIcons.person),
-              title: const Text('Documentos personales'),
+              title: const Text('Documentos de identidad'),
               subtitle: const Text(
                   "Registre sus documentos personales (Documento identidad, Pasaporte)"),
               onTap: () {
@@ -90,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.credit_card),
-              title: const Text('Tarjetas bancarias'),
+              title: const Text('Documentos bancario'),
               subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
               onTap: () {
                 Get.to(() => TarjetasBancariasScreen());
@@ -101,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.local_hospital),
-              title: const Text('Métodos médicos'),
+              title: const Text('Documentos médicos'),
               subtitle: const Text(
                   "Registre los métodos entregados en las consultas médicas"),
               onTap: () {
@@ -113,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.event),
-              title: const Text('Reserva eventos'),
+              title: const Text('Reservas eventos'),
               subtitle: const Text("Registre sus reservas de eventos"),
               onTap: () {
                 Get.to(() => EventScreen());
@@ -142,6 +144,17 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: const Icon(Icons.ads_click_outlined),
+              title: const Text('Otras'),
+              subtitle: const Text("Registre cualquier documento"),
+              onTap: () {
+                Get.to(() => OhtersScreen());
+              },
+            ),
+          ),
           const Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -163,7 +176,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Lottie.asset("assets/lottie/ticket.json",
                         height: 250, width: 250),
-                    const Text("No ha registrado documentos. COMIENCE AHORA!")
+                    const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Center(
+                          child: Text(
+                              "No ha registrado documentos. COMIENCE AHORA!")),
+                    )
                   ],
                 ))
               : getListDocuments())),

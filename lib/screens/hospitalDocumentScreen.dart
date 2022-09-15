@@ -20,7 +20,7 @@ class _HospitalDocumentScreenState extends State<HospitalDocumentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Documentos personales")),
+      appBar: AppBar(title: const Text("Documentos médico")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
@@ -35,11 +35,11 @@ class _HospitalDocumentScreenState extends State<HospitalDocumentScreen> {
               )),
             )
           : getListDocuments(
-              "Método hospitalario", documentController, "hospital")),
+              "Documento médico", documentController, "hospital")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(() => AddDocument(),
-                arguments: {"category": "Método hospitalario"});
+                arguments: {"category": "Documento médico"});
           },
           label: const Text("Agregar")),
     );

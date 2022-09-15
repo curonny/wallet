@@ -21,7 +21,7 @@ class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tarjeta Bancarias")),
+      appBar: AppBar(title: const Text("Documentos bancario")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
@@ -31,15 +31,16 @@ class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
                   Lottie.asset("assets/lottie/cards.json",
                       height: 250, width: 250),
                   const Text(
-                      "No ha registrado tarjetas bancarias. COMIENCE AHORA!")
+                      "No ha registrado documentos bancarios. COMIENCE AHORA!")
                 ],
               )),
             )
-          : getListDocuments("Tarjeta Bancaria", documentController, "cards")),
+          : getListDocuments(
+              "Documentos bancario", documentController, "cards")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(() => AddDocument(),
-                arguments: {"category": "Tarjeta Bancaria"});
+                arguments: {"category": "Documentos bancario"});
           },
           label: const Text("Agregar")),
     );

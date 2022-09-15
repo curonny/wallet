@@ -18,7 +18,7 @@ class _VuelosScreenState extends State<VuelosScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Reserva vuelos")),
+      appBar: AppBar(title: const Text("Reservas de  vuelos")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),

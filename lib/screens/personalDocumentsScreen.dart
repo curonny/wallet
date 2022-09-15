@@ -21,7 +21,7 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Personales")),
+      appBar: AppBar(title: const Text("Documentos de identidad")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
@@ -30,7 +30,8 @@ class _PersonalDocumentsScreenState extends State<PersonalDocumentsScreen> {
                 children: [
                   Lottie.asset("assets/lottie/scanning.json",
                       height: 250, width: 250),
-                  const Text("No ha registrado documentos. COMIENCE AHORA!")
+                  const Text(
+                      "No ha registrado documentos de identidad. COMIENCE AHORA!")
                 ],
               )),
             )
