@@ -24,6 +24,7 @@
 </queries>
    <application
         android:label="DWallet"
+        android:requestLegacyExternalStorage="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
