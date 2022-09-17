@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.credit_card),
               title: const Text('Todas'),
               onTap: () {
-                Get.to(() => HomeScreen());
+                Navigator.of(context).pop();
               },
             ),
           ),

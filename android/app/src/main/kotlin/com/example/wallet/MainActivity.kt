@@ -1,4 +1,4 @@
-package com.example.wallet
+package com.curonny.dwallet
 
 import io.flutter.embedding.android.FlutterActivity
 
