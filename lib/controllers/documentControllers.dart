@@ -7,10 +7,10 @@ class DocumentController extends GetxController {
   RxList<String> listCategories = <String>[
     "Documento de identidad",
     "Documento Bancario",
+    "Documento médico",
+    "Reserva evento",
     "Reserva hotel",
     "Reserva avión",
-    "Reserva evento",
-    "Documento médico",
     "Otros"
   ].obs;
 

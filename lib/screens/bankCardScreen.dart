@@ -21,7 +21,7 @@ class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Documentos bancario")),
+      appBar: AppBar(title: const Text("Documentos bancarios")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
@@ -36,11 +36,11 @@ class _TarjetasBancariasScreenState extends State<TarjetasBancariasScreen> {
               )),
             )
           : getListDocuments(
-              "Documentos bancario", documentController, "cards")),
+              "Documento Bancario", documentController, "cards")),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Get.to(() => AddDocument(),
-                arguments: {"category": "Documentos bancario"});
+                arguments: {"category": "Documento Bancario"});
           },
           label: const Text("Agregar")),
     );

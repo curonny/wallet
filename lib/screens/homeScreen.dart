@@ -55,9 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(children: [
           UserAccountsDrawerHeader(
             accountName: const Text("DWallet"),
-            accountEmail: const Text(
-              "La billetera electrónica para tus documentos",
-              maxLines: 2,
+            accountEmail: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "La billetera electrónica para tus documentos",
+                maxLines: 2,
+              ),
             ),
             currentAccountPicture: CircleAvatar(
               radius: 100,
@@ -136,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.airplane_ticket),
-              title: const Text('Reservas vuelos'),
+              title: const Text('Reservas avión'),
               subtitle: const Text("Registre sus reservas de vuelos"),
               onTap: () {
                 Get.to(() => VuelosScreen());

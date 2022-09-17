@@ -24,11 +24,18 @@ class _ViewDocumentState extends State<ViewDocument> {
     StreamController<Widget> overlayController =
         StreamController<Widget>.broadcast();
     return Scaffold(
-      appBar: AppBar(title: Text(document.nombre.toString())),
+      appBar: AppBar(title: Text(document.categorie.toString())),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                document.nombre.toString().toUpperCase(),
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
             Text(
               "Registro creado el: ".tr,
               style: Get.theme.textTheme.bodyText2,

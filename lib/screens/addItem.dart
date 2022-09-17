@@ -34,6 +34,12 @@ class _AddDocumentState extends State<AddDocument> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Adicionar documento"),
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                documentController.clearController();
+                Get.back();
+              }),
         ),
         body: formCreateDocument(),
         bottomNavigationBar: Padding(
@@ -55,7 +61,8 @@ class _AddDocumentState extends State<AddDocument> {
                 style: const TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                if (documentController.imageCardMain.value == '') {
+                if (documentController.imageCardMain.value == '' &&
+                    documentController.imageCardSecondary.value == '') {
                   Get.snackbar("Error",
                       "Debe adicionar al menos una imagen al documento",
                       backgroundColor: Colors.red);
@@ -91,6 +98,9 @@ class _AddDocumentState extends State<AddDocument> {
                 validator: (value) {
                   if (value!.trim() == "") {
                     return "El nombre del documento no puede ser vacío";
+                  }
+                  if (value.length > 25) {
+                    return "El nombre del documento no puede ser mayor de 25 caracteres";
                   }
                   return null;
                 },

@@ -12,7 +12,6 @@ getListDocuments(
   RxInt index = 0.obs;
   index.value = documentController.listDocuments
       .indexWhere((element) => element.categorie == category.toString());
-  print(index);
   return Obx(
     () => index.value == -1
         ? Lottie.asset("assets/lottie/$icon.json")

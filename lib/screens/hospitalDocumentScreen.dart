@@ -20,7 +20,7 @@ class _HospitalDocumentScreenState extends State<HospitalDocumentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Documentos médico")),
+      appBar: AppBar(title: const Text("Documentos médicos")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),

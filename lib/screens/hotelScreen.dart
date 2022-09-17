@@ -18,7 +18,7 @@ class _HotelScreenState extends State<HotelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Reserva hoteles")),
+      appBar: AppBar(title: const Text("Reservas hoteles")),
       body: Obx(() => documentController.listDocuments.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(15.0),
