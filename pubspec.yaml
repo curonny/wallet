@@ -43,7 +43,10 @@ dependencies:
   swipe_image_gallery: ^0.5.2
   url_launcher: ^6.1.5
   introduction_screen: ^3.0.1
-  apklis_payment_checker: ^1.0.0
+  apklis_payment_checker:
+    git:
+      url: https://github.com/yeikel16/apklis-payment-checker-flutter.git
+      ref: main
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

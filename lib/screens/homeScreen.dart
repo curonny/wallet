@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.credit_card),
-              title: const Text('Documentos bancario'),
+              title: const Text('Documentos bancarios'),
               subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
               onTap: () {
                 Get.to(() => TarjetasBancariasScreen());

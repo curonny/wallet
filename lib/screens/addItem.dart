@@ -25,6 +25,11 @@ class _AddDocumentState extends State<AddDocument> {
       documentController.txtCategory.text = categoryContext.toString();
       documentController.category.value = categoryContext.toString();
     }
+    @override
+    void dispose() {
+      super.dispose();
+      documentController.onClose();
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -84,7 +89,7 @@ class _AddDocumentState extends State<AddDocument> {
                 controller: documentController.txtNombre,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
-                  if (value == "") {
+                  if (value!.trim() == "") {
                     return "El nombre del documento no puede ser vacío";
                   }
                   return null;
@@ -230,119 +235,101 @@ class _AddDocumentState extends State<AddDocument> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Obx(() => Visibility(
-                    visible: documentController.category.value.toString() ==
-                        "Documento de identidad",
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Seleccione la imagen secundaria".tr,
-                            style: Get.theme.textTheme.bodyText2,
+              child: Column(
+                children: [
+                  Text(
+                    "Seleccione la imagen secundaria".tr,
+                    style: Get.theme.textTheme.bodyText2,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Get.bottomSheet(
+                        Container(
+                          height: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            color: Get.theme.colorScheme.secondary,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Get.bottomSheet(
-                                Container(
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20),
-                                    ),
-                                    color: Get.theme.colorScheme.secondary,
-                                  ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                TextButton(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
                                       children: [
-                                        TextButton(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.camera,
-                                                  color:
-                                                      Get.theme.backgroundColor,
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Tomar foto".tr,
-                                                    style: Get.theme.textTheme
-                                                        .headline5
-                                                        ?.copyWith(
-                                                            color:
-                                                                Colors.white),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            _getFromCamera("back");
-                                          },
+                                        Icon(
+                                          Icons.camera,
+                                          color: Get.theme.backgroundColor,
                                         ),
-                                        TextButton(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.image,
-                                                  color:
-                                                      Get.theme.backgroundColor,
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    "Seleccionar desde la galería"
-                                                        .tr,
-                                                    style: Get.theme.textTheme
-                                                        .headline5
-                                                        ?.copyWith(
-                                                            color:
-                                                                Colors.white),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                        Expanded(
+                                          child: Text(
+                                            "Tomar foto".tr,
+                                            style: Get.theme.textTheme.headline5
+                                                ?.copyWith(color: Colors.white),
                                           ),
-                                          onPressed: () {
-                                            _getFromGallery("back");
-                                          },
                                         ),
                                       ],
                                     ),
                                   ),
+                                  onPressed: () {
+                                    _getFromCamera("back");
+                                  },
                                 ),
-                                barrierColor: Colors.transparent,
-                                isDismissible: true,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20)),
+                                TextButton(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.image,
+                                          color: Get.theme.backgroundColor,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            "Seleccionar desde la galería".tr,
+                                            style: Get.theme.textTheme.headline5
+                                                ?.copyWith(color: Colors.white),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    _getFromGallery("back");
+                                  },
                                 ),
-                              );
-                            },
-                            child: Text(
-                              "Adicionar imagen".tr,
-                              style: TextStyle(color: Get.theme.primaryColor),
+                              ],
                             ),
                           ),
-                          Obx(
-                            () => Visibility(
-                                visible: documentController
-                                        .imageCardSecondary.value !=
-                                    "",
-                                child: Image.memory(base64Decode(
-                                    documentController.imageCardSecondary
-                                        .toString()))),
-                          )
-                        ],
-                      ),
+                        ),
+                        barrierColor: Colors.transparent,
+                        isDismissible: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Adicionar imagen".tr,
+                      style: TextStyle(color: Get.theme.primaryColor),
                     ),
-                  )),
-            )
+                  ),
+                  Obx(
+                    () => Visibility(
+                        visible:
+                            documentController.imageCardSecondary.value != "",
+                        child: Image.memory(base64Decode(
+                            documentController.imageCardSecondary.toString()))),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

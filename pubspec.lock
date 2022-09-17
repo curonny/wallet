@@ -18,9 +18,11 @@ packages:
   apklis_payment_checker:
     dependency: "direct main"
     description:
-      name: apklis_payment_checker
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: main
+      resolved-ref: b926843458633ad8d067afc08fe8308a0a386188
+      url: "https://github.com/yeikel16/apklis-payment-checker-flutter.git"
+    source: git
     version: "1.0.0"
   archive:
     dependency: transitive
@@ -183,13 +185,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.3"
-  device_apps_null_safety:
-    dependency: transitive
-    description:
-      name: device_apps_null_safety
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   dots_indicator:
     dependency: transitive
     description:

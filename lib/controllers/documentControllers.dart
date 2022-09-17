@@ -30,6 +30,12 @@ class DocumentController extends GetxController {
   RxInt itemByType = 0.obs;
 
   @override
+  void onClose() {
+    super.onClose();
+    clearController();
+  }
+
+  @override
   Future<void> onInit() async {
     getItems();
     super.onInit();
