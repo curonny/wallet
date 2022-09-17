@@ -40,7 +40,7 @@ getIconDocument(String string) {
         Icons.local_hospital,
         size: 30,
       );
-    case "Otra":
+    case "Otros":
       return const Icon(
         Icons.ads_click_outlined,
         size: 30,
