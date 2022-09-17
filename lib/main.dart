@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:path_provider/path_provider.dart';
 import 'package:wallet/screens/homeScreen.dart';
+import 'package:wallet/screens/splashScreen.dart';
 
 import 'models/document.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'DWallet',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const SplashScreen(),
       theme: ThemeData(useMaterial3: true),
     );
   }
