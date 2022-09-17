@@ -58,7 +58,13 @@ class _SplashScreenState extends State<SplashScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
-            )
+            ),
+            Obx(() => paymentController.isLoadingStatus.value
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ))
+                : const SizedBox())
           ],
         ),
       ),

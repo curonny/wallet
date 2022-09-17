@@ -22,6 +22,8 @@ class PaymentController extends GetxController {
 
     print(apklisInfo.isInstalled);
 
+    dwalletPurchased.value = dWalletStatus.paid;
+    apkListInstalled.value = apklisInfo.isInstalled;
     print(dWalletStatus.paid);
     print(dWalletStatus.username);
     isLoadingStatus.value = false;
