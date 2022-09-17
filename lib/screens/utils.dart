@@ -49,18 +49,18 @@ getIconDocument(String string) {
   }
 }
 
-Future<void> openWhatsapp(String whatsapp) async {
+openWhatsapp(String whatsapp) async {
   var whatsappURLiOS =
-      Uri.parse("https://wa.me/$whatsapp?text='Sugerencias sobre DWallet'");
-  if (!await launchUrl(whatsappURLiOS)) {
-    throw 'Could not launch $whatsappURLiOS';
+      "https://wa.me/$whatsapp?text=${Uri.parse('Sugerencias sobre RWallet')}";
+  if (await canLaunch(whatsappURLiOS)) {
+    await launch(whatsappURLiOS, forceSafariVC: false);
   }
 }
 
-Future<void> openTelegram(String telegram) async {
+openTelegram(String telegram) async {
   var telegramURLiOS =
-      Uri.parse("https://t.me/$telegram?text='Sugerencias sobre DWallet'");
-  if (!await launchUrl(telegramURLiOS)) {
-    throw 'Could not launch $telegramURLiOS';
+      "https://t.me/$telegram?text=${Uri.parse('Sugerencias sobre RWallet')}";
+  if (await canLaunch(telegramURLiOS)) {
+    await launch(telegramURLiOS, forceSafariVC: false);
   }
 }

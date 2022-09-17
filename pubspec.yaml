@@ -43,6 +43,7 @@ dependencies:
   swipe_image_gallery: ^0.5.2
   url_launcher: ^6.1.5
   introduction_screen: ^3.0.1
+  flutter_launch: ^0.3.0
   apklis_payment_checker:
     git:
       url: https://github.com/yeikel16/apklis-payment-checker-flutter.git
