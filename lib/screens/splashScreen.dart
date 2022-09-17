@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:wallet/controllers/paymentController.dart';
+import 'package:wallet/screens/aboutUsScreen.dart';
 import 'package:wallet/screens/homeScreen.dart';
+
+import 'buyAppScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -11,6 +15,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  PaymentController get paymentController => Get.put(PaymentController());
+
   GetStorage getStorage = GetStorage();
   @override
   void initState() {
@@ -20,10 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void donLogin() {
     Future.delayed(const Duration(seconds: 3), () async {
-      bool token = getStorage.hasData('token');
-
-      if (token) {
-        Get.offAll(HomeScreen());
+      if (GetPlatform.isAndroid) {
+        if (paymentController.dwalletPurchased.value) {
+          Get.offAll(HomeScreen());
+        } else {
+          Get.offAll(BuyAppScreen());
+        }
       } else {
         Get.offAll(HomeScreen());
       }
@@ -43,9 +51,13 @@ class _SplashScreenState extends State<SplashScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Image.asset('assets/image/playstore.png'),
             ),
-            const Text(
-              "La billetera electrónica para tus documentos",
-              style: TextStyle(fontWeight: FontWeight.w600),
+            const Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Text(
+                "Su billetera electrónica para documentos y papeles importantes",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
             )
           ],
         ),

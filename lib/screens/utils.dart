@@ -64,3 +64,9 @@ openTelegram(String telegram) async {
     await launch(telegramURLiOS, forceSafariVC: false);
   }
 }
+
+Future<void> launchUrl(Uri url) async {
+  if (!await canLaunch(url.toString())) {
+    throw 'Could not launch $url';
+  }
+}
