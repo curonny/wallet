@@ -26,16 +26,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void donLogin() {
     Future.delayed(const Duration(seconds: 3), () async {
-      Get.offAll(HomeScreen());
-      // if (GetPlatform.isAndroid) {
-      //   if (paymentController.dwalletPurchased.value) {
-      //     Get.offAll(HomeScreen());
-      //   } else {
-      //     Get.offAll(BuyAppScreen());
-      //   }
-      // } else {
-      //   Get.offAll(HomeScreen());
-      // }
+      if (GetPlatform.isAndroid) {
+        if (paymentController.dwalletPurchased.value) {
+          Get.offAll(HomeScreen());
+        } else {
+          Get.offAll(BuyAppScreen());
+        }
+      } else {
+        Get.offAll(HomeScreen());
+      }
     });
   }
 
@@ -55,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                "Su billetera electrónica para documentos y papeles importantes",
+                "Su billetera electrónica para documentos importantes",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),

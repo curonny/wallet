@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Wallet"),
+        title: const Text("DWallet"),
         actions: [
           IconButton(
               onPressed: () {
@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 "La billetera electrónica para tus documentos",
                 maxLines: 2,
+                style: TextStyle(fontSize: 10),
               ),
             ),
             currentAccountPicture: CircleAvatar(

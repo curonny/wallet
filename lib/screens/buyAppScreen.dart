@@ -34,6 +34,36 @@ class _BuyAppScreenState extends State<BuyAppScreen> {
               const Padding(
                 padding: EdgeInsets.all(15.0),
                 child: Text(
+                  "Ya compró DWallet y no puede usarla?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text(
+                  "1- Verifique tener instalada la aplicación Apklis \n 2- Introduzca el usuario y contraseña con que fue comprada al aplicación \n 3- Cierre DWallet e intente abrila nuevamente",
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: InkWell(
+                  child: const Text(
+                    "Descargue aquí Apklis",
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.blue),
+                  ),
+                  onTap: () async {
+                    await launchUrl(Uri.parse(
+                        "https://www.apklis.cu/application/cu.uci.android.apklis"));
+                  },
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(15.0),
+                child: Text(
                   "Por qué comprar DWallet?",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600),
@@ -44,7 +74,6 @@ class _BuyAppScreenState extends State<BuyAppScreen> {
                 child: Text(
                   "Es una aplicación que emula una billetera física, que permite llevar siempre los documentos en forma digital",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
               Padding(
