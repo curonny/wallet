@@ -51,7 +51,7 @@ getIconDocument(String string) {
 
 openWhatsapp(String whatsapp) async {
   var whatsappURLiOS =
-      "https://wa.me/$whatsapp?text=${Uri.parse('Sugerencias sobre DWallet')}";
+      "mailto:curonny1992@gmail.com?subject=DWallet&body=Sugerencias sobre DWallet";
   if (await canLaunch(whatsappURLiOS)) {
     await launch(whatsappURLiOS, forceSafariVC: false);
   }
@@ -67,6 +67,15 @@ openTelegram(String telegram) async {
 
 Future<void> launchUrl(Uri url) async {
   if (!await canLaunch(url.toString())) {
+    throw 'Could not launch $url';
+  }
+}
+
+sendingMails() async {
+  const url = 'mailto:curonny1992@gmail.com';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
     throw 'Could not launch $url';
   }
 }

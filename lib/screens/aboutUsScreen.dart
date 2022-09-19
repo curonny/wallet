@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkable/linkable.dart';
 
 import 'utils.dart';
 
@@ -50,7 +51,7 @@ class _AboutUsState extends State<AboutUs> {
                       padding: const EdgeInsets.all(10.0),
                       child: Center(
                         child: Text(
-                          "Su billetera electrónica para documentos y papeles importantes",
+                          "Su billetera electrónica para documentos importantes",
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
@@ -89,15 +90,6 @@ class _AboutUsState extends State<AboutUs> {
                     "Diseño",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  trailing: InkWell(
-                    child: Image.asset(
-                      "assets/image/ic_whatsapp.png",
-                      height: 30,
-                    ),
-                    onTap: () {
-                      openWhatsapp("+5353392651");
-                    },
-                  ),
                 ),
               ),
             ),
@@ -117,15 +109,6 @@ class _AboutUsState extends State<AboutUs> {
                   subtitle: const Text(
                     "Calidad",
                     style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  trailing: InkWell(
-                    child: Image.asset(
-                      "assets/image/ic_whatsapp.png",
-                      height: 30,
-                    ),
-                    onTap: () {
-                      openWhatsapp("+5353232799");
-                    },
                   ),
                 ),
               ),
@@ -147,18 +130,17 @@ class _AboutUsState extends State<AboutUs> {
                     "Desarrollo",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  trailing: InkWell(
-                    child: Image.asset(
-                      "assets/image/ic_whatsapp.png",
-                      height: 30,
-                    ),
-                    onTap: () {
-                      openWhatsapp("+5358129890");
-                    },
-                  ),
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                child: Linkable(
+                  text: "Contáctenos: soporte.dwallet@gmail.com",
+                ),
+              ),
+            )
           ],
         ),
       ),
