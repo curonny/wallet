@@ -69,9 +69,9 @@ class _AboutUsState extends State<AboutUs> {
               ),
             ),
             const Divider(),
-            Text(
+            const Text(
               "Créditos de DWallet",
-              style: Theme.of(context).textTheme.bodyText1,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -130,6 +130,24 @@ class _AboutUsState extends State<AboutUs> {
                     "Desarrollo",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Center(
+                child: Text(
+                  "Protección de datos y privacidad",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Center(
+                child: Text(
+                  "Los datos recogidos no se envían a terceros, solo son almacenados en el dispositivo para su uso",
+                  textAlign: TextAlign.justify,
                 ),
               ),
             ),
