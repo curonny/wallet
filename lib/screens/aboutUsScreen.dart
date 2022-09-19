@@ -107,6 +107,35 @@ class _AboutUsState extends State<AboutUs> {
                 elevation: 15,
                 child: ListTile(
                   leading: Image.asset(
+                    "assets/image/ic_qa.png",
+                    height: 40,
+                  ),
+                  title: Text(
+                    "Ing. Rosalina Puerto",
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  subtitle: const Text(
+                    "Calidad",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  trailing: InkWell(
+                    child: Image.asset(
+                      "assets/image/ic_whatsapp.png",
+                      height: 30,
+                    ),
+                    onTap: () {
+                      openWhatsapp("+5353232799");
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 15,
+                child: ListTile(
+                  leading: Image.asset(
                     "assets/image/icon_develop.png",
                     height: 40,
                   ),
