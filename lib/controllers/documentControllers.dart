@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:wallet/models/document.dart';
 
+import '../screens/editItem.dart';
+
 class DocumentController extends GetxController {
   RxList<String> listCategories = <String>[
     "Documento de identidad",
@@ -75,6 +77,24 @@ class DocumentController extends GetxController {
     listDocuments.refresh();
     changingFavorite.value = false;
     update();
+  }
+
+  updateDocument(int index) async {
+    if (formKey.currentState!.validate()) {
+      isLoading.value = true;
+      final box = await Hive.openBox<Document>("documents");
+      Document document = box.values.toList().elementAt(index);
+      document.nombre = txtNombre.text;
+      document.categorie = txtCategory.text;
+      document.imageFront = txtImageFront.text.toString();
+      document.imageBack = txtImageBack.text.toString();
+      document.save();
+      clearController();
+      getItems();
+      Get.back();
+      isLoading.value = false;
+      update();
+    }
   }
 
   getItems() async {

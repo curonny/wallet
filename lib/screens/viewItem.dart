@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:swipe_image_gallery/swipe_image_gallery.dart';
 import 'package:wallet/models/document.dart';
+import 'package:wallet/screens/editItem.dart';
 
 import '../controllers/documentControllers.dart';
 
@@ -26,134 +27,143 @@ class _ViewDocumentState extends State<ViewDocument> {
 
     StreamController<Widget> overlayController =
         StreamController<Widget>.broadcast();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(document.categorie.toString()),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.edit),
-              )),
-          // Icons.favorite_border
-          IconButton(
-              onPressed: () {},
-              icon: IconButton(
-                onPressed: () {
-                  if (document.favorite == "0") {
-                    documentController.setFavoritoValue(index, "1");
-                  } else {
-                    documentController.setFavoritoValue(index, "0");
-                  }
-                },
-                icon: Obx(() => documentController.changingFavorite.value
-                    ? const Center(child: CircularProgressIndicator())
-                    : document.favorite == '1'
-                        ? const Icon(Icons.favorite)
-                        : const Icon(Icons.favorite_border)),
-              )),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                document.nombre.toString().toUpperCase(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
+    return Obx(() => documentController.isLoading.value
+        ? const Center(child: CircularProgressIndicator())
+        : Scaffold(
+            appBar: AppBar(
+              title: Text(document.categorie.toString()),
+              actions: [
+                IconButton(
+                    onPressed: () {},
+                    icon: IconButton(
+                      onPressed: () {
+                        Get.to(() => EditDocumentScreen(),
+                            arguments: {"document": document, "index": index});
+                      },
+                      icon: const Icon(Icons.edit),
+                    )),
+                // Icons.favorite_border
+                IconButton(
+                    onPressed: () {},
+                    icon: IconButton(
+                      onPressed: () {
+                        if (document.favorite == "0") {
+                          documentController.setFavoritoValue(index, "1");
+                        } else {
+                          documentController.setFavoritoValue(index, "0");
+                        }
+                      },
+                      icon: Obx(() => documentController.changingFavorite.value
+                          ? const Center(child: CircularProgressIndicator())
+                          : document.favorite == '1'
+                              ? const Icon(Icons.favorite)
+                              : const Icon(Icons.favorite_border)),
+                    )),
+              ],
             ),
-            Text(
-              "Registro creado el: ".tr,
-              style: Get.theme.textTheme.bodyText2,
-            ),
-            Text(DateFormat.yMMMd()
-                .format(DateTime.parse(document.date.toString()))),
-            InkWell(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Visibility(
-                    visible: document.imageFront.toString().isNotEmpty,
-                    child: Image.memory(
-                        base64Decode(document.imageFront.toString()))),
-              ),
-              onTap: () {
-                SwipeImageGallery(
-                  overlayController: overlayController,
-                  initialIndex: 0,
-                  backgroundColor: Colors.white,
-                  context: context,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.memory(
-                            base64Decode(document.imageFront.toString())),
-                        Padding(
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          document.nombre.toString().toUpperCase(),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        "Registro creado el: ".tr,
+                        style: Get.theme.textTheme.bodyText2,
+                      ),
+                      Text(DateFormat.yMMMd()
+                          .format(DateTime.parse(document.date.toString()))),
+                      InkWell(
+                        child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                              child: InkWell(
-                            child: const Text(
-                              "Cerrar",
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            onTap: () {
-                              Get.back();
+                          child: Visibility(
+                              visible:
+                                  document.imageFront.toString().isNotEmpty,
+                              child: Image.memory(base64Decode(
+                                  document.imageFront.toString()))),
+                        ),
+                        onTap: () {
+                          SwipeImageGallery(
+                            overlayController: overlayController,
+                            initialIndex: 0,
+                            backgroundColor: Colors.white,
+                            context: context,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.memory(base64Decode(
+                                      document.imageFront.toString())),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Center(
+                                        child: InkWell(
+                                      child: const Text(
+                                        "Cerrar",
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                    )),
+                                  )
+                                ],
+                              );
                             },
-                          )),
-                        )
-                      ],
-                    );
-                  },
-                  itemCount: 1,
-                ).show();
-              },
-            ),
-            InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Visibility(
-                      visible: document.imageBack.toString().isNotEmpty,
-                      child: Image.memory(
-                          base64Decode(document.imageBack.toString()))),
-                ),
-                onTap: () {
-                  SwipeImageGallery(
-                    overlayController: overlayController,
-                    initialIndex: 0,
-                    backgroundColor: Colors.white,
-                    context: context,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.memory(
-                              base64Decode(document.imageBack.toString())),
-                          Padding(
+                            itemCount: 1,
+                          ).show();
+                        },
+                      ),
+                      InkWell(
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                                child: InkWell(
-                              child: const Text(
-                                "Cerrar",
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              onTap: () {
-                                Get.back();
+                            child: Visibility(
+                                visible:
+                                    document.imageBack.toString().isNotEmpty,
+                                child: Image.memory(base64Decode(
+                                    document.imageBack.toString()))),
+                          ),
+                          onTap: () {
+                            SwipeImageGallery(
+                              overlayController: overlayController,
+                              initialIndex: 0,
+                              backgroundColor: Colors.white,
+                              context: context,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.memory(base64Decode(
+                                        document.imageBack.toString())),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Center(
+                                          child: InkWell(
+                                        child: const Text(
+                                          "Cerrar",
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                      )),
+                                    )
+                                  ],
+                                );
                               },
-                            )),
-                          )
-                        ],
-                      );
-                    },
-                    itemCount: 1,
-                  ).show();
-                })
-          ]),
-        ),
-      ),
-    );
+                              itemCount: 1,
+                            ).show();
+                          })
+                    ]),
+              ),
+            ),
+          ));
   }
 }

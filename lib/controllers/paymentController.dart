@@ -16,16 +16,18 @@ class PaymentController extends GetxController {
   }
 
   void checkDWalletStatus() async {
-    isLoadingStatus.value = true;
-    var dWalletStatus = await ApklisPaymentChecker.isPurchased(packageId);
-    var apklisInfo = await ApklisPaymentChecker.getApklisInfo();
+    if (GetPlatform.isAndroid) {
+      isLoadingStatus.value = true;
+      var dWalletStatus = await ApklisPaymentChecker.isPurchased(packageId);
+      var apklisInfo = await ApklisPaymentChecker.getApklisInfo();
 
-    print(apklisInfo.isInstalled);
+      print(apklisInfo.isInstalled);
 
-    dwalletPurchased.value = dWalletStatus.paid;
-    apkListInstalled.value = apklisInfo.isInstalled;
-    print(dWalletStatus.paid);
-    print(dWalletStatus.username);
-    isLoadingStatus.value = false;
+      dwalletPurchased.value = dWalletStatus.paid;
+      apkListInstalled.value = apklisInfo.isInstalled;
+      print(dWalletStatus.paid);
+      print(dWalletStatus.username);
+      isLoadingStatus.value = false;
+    }
   }
 }
