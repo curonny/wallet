@@ -231,7 +231,7 @@ class _AddDocumentState extends State<AddDocument> {
                     },
                     child: Text(
                       "Adicionar imagen".tr,
-                      style: TextStyle(color: Get.theme.primaryColor),
+                      style: const TextStyle(color: Colors.blue),
                     ),
                   ),
                   Obx(
@@ -327,7 +327,7 @@ class _AddDocumentState extends State<AddDocument> {
                     },
                     child: Text(
                       "Adicionar imagen".tr,
-                      style: TextStyle(color: Get.theme.primaryColor),
+                      style: const TextStyle(color: Colors.blue),
                     ),
                   ),
                   Obx(

@@ -303,7 +303,8 @@ class DocumentSearch extends SearchDelegate {
         Document documento = suggestionList[index];
         return InkWell(
           onTap: () {
-            Get.to(() => ViewDocument(), arguments: {"item": documento});
+            Get.to(() => ViewDocument(),
+                arguments: {"item": documento, "index": index});
           },
           child: Padding(
             padding: const EdgeInsets.all(15),

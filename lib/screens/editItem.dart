@@ -229,7 +229,7 @@ class _EditDocumentScreenState extends State<EditDocumentScreen> {
                     },
                     child: Text(
                       "Cambiar imagen".tr,
-                      style: TextStyle(color: Get.theme.primaryColor),
+                      style: const TextStyle(color: Colors.blue),
                     ),
                   ),
                   Obx(
@@ -325,7 +325,7 @@ class _EditDocumentScreenState extends State<EditDocumentScreen> {
                     },
                     child: Text(
                       "Cambiar imagen".tr,
-                      style: TextStyle(color: Get.theme.primaryColor),
+                      style: const TextStyle(color: Colors.blue),
                     ),
                   ),
                   Obx(
