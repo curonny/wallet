@@ -25,6 +25,7 @@ class DocumentController extends GetxController {
 
   RxString imageCardMain = "".obs;
   RxString imageCardSecondary = "".obs;
+  RxBool changingFavorite = false.obs;
 
   RxBool isLoading = false.obs;
   RxInt itemByType = 0.obs;
@@ -63,6 +64,17 @@ class DocumentController extends GetxController {
       getItems();
       Get.back();
     }
+  }
+
+  void setFavoritoValue(int index, String value) async {
+    changingFavorite.value = true;
+    final box = await Hive.openBox<Document>("documents");
+    Document document = box.values.toList().elementAt(index);
+    document.favorite = value.toString();
+    document.save();
+    listDocuments.refresh();
+    changingFavorite.value = false;
+    update();
   }
 
   getItems() async {

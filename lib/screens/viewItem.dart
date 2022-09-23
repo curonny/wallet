@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:swipe_image_gallery/swipe_image_gallery.dart';
 import 'package:wallet/models/document.dart';
 
+import '../controllers/documentControllers.dart';
+
 class ViewDocument extends StatefulWidget {
   ViewDocument({Key? key}) : super(key: key);
 
@@ -16,15 +18,43 @@ class ViewDocument extends StatefulWidget {
 }
 
 class _ViewDocumentState extends State<ViewDocument> {
+  DocumentController get documentController => Get.put(DocumentController());
   @override
   Widget build(BuildContext context) {
     Document document = Get.arguments["item"];
-    print(document.imageFront.toString());
+    int index = Get.arguments["index"];
 
     StreamController<Widget> overlayController =
         StreamController<Widget>.broadcast();
     return Scaffold(
-      appBar: AppBar(title: Text(document.categorie.toString())),
+      appBar: AppBar(
+        title: Text(document.categorie.toString()),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.edit),
+              )),
+          // Icons.favorite_border
+          IconButton(
+              onPressed: () {},
+              icon: IconButton(
+                onPressed: () {
+                  if (document.favorite == "0") {
+                    documentController.setFavoritoValue(index, "1");
+                  } else {
+                    documentController.setFavoritoValue(index, "0");
+                  }
+                },
+                icon: Obx(() => documentController.changingFavorite.value
+                    ? const Center(child: CircularProgressIndicator())
+                    : document.favorite == '1'
+                        ? const Icon(Icons.favorite)
+                        : const Icon(Icons.favorite_border)),
+              )),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(

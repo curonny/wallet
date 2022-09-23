@@ -206,7 +206,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Document documento = documentController.listDocuments[index];
               return GestureDetector(
                 onTap: () {
-                  Get.to(() => ViewDocument(), arguments: {"item": documento});
+                  Get.to(() => ViewDocument(),
+                      arguments: {"item": documento, "index": index});
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -224,15 +225,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               DateTime.parse(documento.date.toString())))
                         ],
                       ),
-                      trailing: IconButton(
-                          onPressed: () {
-                            print(index);
-                            documentController.removeDocument(index);
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            size: 20,
-                          )),
+                      trailing: InkWell(
+                        onTap: () {
+                          documentController.removeDocument(index);
+                        },
+                        child: const Icon(
+                          Icons.delete,
+                          size: 20,
+                        ),
+                      ),
                       leading: getIconDocument(documento.categorie.toString()),
                     ),
                   ),
@@ -290,7 +291,8 @@ class DocumentSearch extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     List<Document> suggestionList = [];
     for (int i = 0; i < listDocuments.length; i++) {
-      if (listDocuments[i].nombre.toString().toLowerCase().contains(query)) {
+      if (listDocuments[i].nombre.toString().toLowerCase().contains(query) ||
+          listDocuments[i].categorie.toString().contains(query)) {
         suggestionList.add(listDocuments[i]);
       }
     }

@@ -16,6 +16,8 @@ class Document extends HiveObject {
   String? categorie;
   @HiveField(4)
   String? date;
+  @HiveField(5, defaultValue: "0")
+  String? favorite;
 
   Document({
     this.nombre,
