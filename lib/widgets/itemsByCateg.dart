@@ -28,7 +28,7 @@ getListDocuments(
                       return GestureDetector(
                         onTap: () {
                           Get.to(() => ViewDocument(),
-                              arguments: {"item": documento});
+                              arguments: {"item": documento, "index": index});
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
