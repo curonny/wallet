@@ -59,6 +59,26 @@ class _ViewDocumentState extends State<ViewDocument> {
                               ? const Icon(Icons.favorite)
                               : const Icon(Icons.favorite_border)),
                     )),
+                Visibility(
+                  visible: document.archived == '0',
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: IconButton(
+                        onPressed: () {
+                          if (document.archived == "0") {
+                            documentController.setArchiveValue(index, "1");
+                          } else {
+                            documentController.setArchiveValue(index, "0");
+                          }
+                        },
+                        icon: Obx(() => documentController
+                                .changingFavorite.value
+                            ? const Center(child: CircularProgressIndicator())
+                            : document.archived == '1'
+                                ? const Icon(Icons.archive)
+                                : const Icon(Icons.archive_outlined)),
+                      )),
+                ),
               ],
             ),
             body: Padding(

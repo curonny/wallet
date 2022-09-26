@@ -22,13 +22,15 @@ class DocumentAdapter extends TypeAdapter<Document> {
       imageBack: fields[2] as String?,
       categorie: fields[3] as String?,
       date: fields[4] as String?,
-    )..favorite = fields[5] == null ? '0' : fields[5] as String?;
+    )
+      ..favorite = fields[5] == null ? '0' : fields[5] as String?
+      ..archived = fields[6] == null ? '0' : fields[6] as String?;
   }
 
   @override
   void write(BinaryWriter writer, Document obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.nombre)
       ..writeByte(1)
@@ -40,7 +42,9 @@ class DocumentAdapter extends TypeAdapter<Document> {
       ..writeByte(4)
       ..write(obj.date)
       ..writeByte(5)
-      ..write(obj.favorite);
+      ..write(obj.favorite)
+      ..writeByte(6)
+      ..write(obj.archived);
   }
 
   @override

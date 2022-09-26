@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wallet/models/document.dart';
 import 'package:wallet/screens/addItem.dart';
+import 'package:wallet/screens/archiveScreen.dart';
 import 'package:wallet/screens/personalDocumentsScreen.dart';
 import 'package:wallet/screens/utils.dart';
 import 'package:wallet/screens/viewItem.dart';
@@ -15,6 +16,7 @@ import '../controllers/documentControllers.dart';
 import 'aboutUsScreen.dart';
 import 'bankCardScreen.dart';
 import 'eventScreen.dart';
+import 'favoriteScreen.dart';
 import 'hospitalDocumentScreen.dart';
 import 'hotelScreen.dart';
 import 'otherScreen.dart';
@@ -76,6 +78,16 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Todas'),
               onTap: () {
                 Navigator.of(context).pop();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: const Icon(Icons.favorite),
+              title: const Text('Favoritos'),
+              onTap: () {
+                Get.to(() => FavoritesScreen());
               },
             ),
           ),
@@ -169,11 +181,26 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: const Icon(Icons.archive),
+              title: const Text('Archivados'),
+              onTap: () {
+                Get.to(() => ArchiveScreen());
+              },
+            ),
+          ),
+          const Divider(),
         ]),
       ),
       body: Obx(() => documentController.isLoading.value
           ? const Center(child: CircularProgressIndicator())
-          : Obx(() => documentController.listDocuments.isEmpty
+          : Obx(() => documentController.listDocuments
+                  .where((p0) => p0.archived == "0")
+                  .toList()
+                  .isEmpty
               ? Center(
                   child: Column(
                   children: [
@@ -204,41 +231,47 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: documentController.listDocuments.length,
             itemBuilder: (context, index) {
               Document documento = documentController.listDocuments[index];
-              return GestureDetector(
-                onTap: () {
-                  Get.to(() => ViewDocument(),
-                      arguments: {"item": documento, "index": index});
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    elevation: 1,
-                    child: ListTile(
-                      title: Text(documento.nombre.toString()),
-                      subtitle: Column(
-                        children: [
-                          Text(
-                            documento.categorie.toString(),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(DateFormat.yMMMd().format(
-                              DateTime.parse(documento.date.toString())))
-                        ],
-                      ),
-                      trailing: InkWell(
-                        onTap: () {
-                          documentController.removeDocument(index);
-                        },
-                        child: const Icon(
-                          Icons.delete,
-                          size: 20,
+              if (documento.archived == "0" || documento.archived == null) {
+                return GestureDetector(
+                  onTap: () {
+                    Get.to(() => ViewDocument(),
+                        arguments: {"item": documento, "index": index});
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 1,
+                      child: ListTile(
+                        title: Text(documento.nombre.toString()),
+                        subtitle: Column(
+                          children: [
+                            Text(
+                              documento.categorie.toString(),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(DateFormat.yMMMd().format(
+                                DateTime.parse(documento.date.toString())))
+                          ],
                         ),
+                        trailing: InkWell(
+                          onTap: () {
+                            documentController.removeDocument(index);
+                          },
+                          child: const Icon(
+                            Icons.delete,
+                            size: 20,
+                          ),
+                        ),
+                        leading:
+                            getIconDocument(documento.categorie.toString()),
                       ),
-                      leading: getIconDocument(documento.categorie.toString()),
                     ),
                   ),
-                ),
-              );
+                );
+              } else {
+                return const SizedBox();
+              }
             }),
       ),
     );

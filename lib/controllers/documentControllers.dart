@@ -57,6 +57,8 @@ class DocumentController extends GetxController {
           nombre: txtNombre.text,
           categorie: category.value.toString(),
           date: DateTime.now().toString(),
+          favorite: "0",
+          archived: "0",
           imageFront: imageCardMain.value.toString(),
           imageBack: imageCardSecondary.value.toString());
       var box = await Hive.openBox<Document>("documents");
@@ -73,6 +75,17 @@ class DocumentController extends GetxController {
     final box = await Hive.openBox<Document>("documents");
     Document document = box.values.toList().elementAt(index);
     document.favorite = value.toString();
+    document.save();
+    listDocuments.refresh();
+    changingFavorite.value = false;
+    update();
+  }
+
+  void setArchiveValue(int index, String value) async {
+    changingFavorite.value = true;
+    final box = await Hive.openBox<Document>("documents");
+    Document document = box.values.toList().elementAt(index);
+    document.archived = value.toString();
     document.save();
     listDocuments.refresh();
     changingFavorite.value = false;
