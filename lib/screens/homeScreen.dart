@@ -325,7 +325,9 @@ class DocumentSearch extends SearchDelegate {
     List<Document> suggestionList = [];
     for (int i = 0; i < listDocuments.length; i++) {
       if (listDocuments[i].nombre.toString().toLowerCase().contains(query) ||
-          listDocuments[i].categorie.toString().contains(query)) {
+          listDocuments[i].categorie.toString().contains(query) ||
+          listDocuments[i].notaImg1.toString().contains(query) ||
+          listDocuments[i].notaImg2.toString().contains(query)) {
         suggestionList.add(listDocuments[i]);
       }
     }

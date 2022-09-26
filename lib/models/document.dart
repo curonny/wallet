@@ -20,6 +20,10 @@ class Document extends HiveObject {
   String? favorite;
   @HiveField(6, defaultValue: "0")
   String? archived;
+  @HiveField(7, defaultValue: "")
+  String? notaImg1;
+  @HiveField(8, defaultValue: "")
+  String? notaImg2;
 
   Document({
     this.nombre,
@@ -29,5 +33,7 @@ class Document extends HiveObject {
     this.date,
     this.favorite,
     this.archived,
+    this.notaImg1,
+    this.notaImg2,
   });
 }

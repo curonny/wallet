@@ -74,6 +74,8 @@ class _EditDocumentScreenState extends State<EditDocumentScreen> {
     documentController.txtImageFront.text = document.imageFront.toString();
     documentController.imageCardMain.value = document.imageFront.toString();
     documentController.imageCardSecondary.value = document.imageBack.toString();
+    documentController.txtNota1.text = document.notaImg1.toString();
+    documentController.txtNota2.text = document.notaImg2.toString();
     return SingleChildScrollView(
         child: Form(
       key: documentController.formKey,
@@ -241,6 +243,20 @@ class _EditDocumentScreenState extends State<EditDocumentScreen> {
                 ],
               ),
             ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: documentController.txtNota1,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.text,
+                  cursorColor: Get.theme.colorScheme.primary,
+                  decoration: const InputDecoration(
+                    hintText: "Nota de la imagen",
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -336,6 +352,20 @@ class _EditDocumentScreenState extends State<EditDocumentScreen> {
                             documentController.imageCardSecondary.toString()))),
                   )
                 ],
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: documentController.txtNota2,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.text,
+                  cursorColor: Get.theme.colorScheme.primary,
+                  decoration: const InputDecoration(
+                    hintText: "Nota de la imagen",
+                  ),
+                ),
               ),
             ),
           ],

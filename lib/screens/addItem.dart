@@ -243,6 +243,22 @@ class _AddDocumentState extends State<AddDocument> {
                 ],
               ),
             ),
+            Obx(() => documentController.imageCardMain.value.toString() != ""
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: documentController.txtNota1,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.text,
+                        cursorColor: Get.theme.colorScheme.primary,
+                        decoration: const InputDecoration(
+                          hintText: "Nota de la imagen",
+                        ),
+                      ),
+                    ),
+                  )
+                : const SizedBox()),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -340,6 +356,23 @@ class _AddDocumentState extends State<AddDocument> {
                 ],
               ),
             ),
+            Obx(() => documentController.imageCardSecondary.value.toString() !=
+                    ""
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: documentController.txtNota2,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.text,
+                        cursorColor: Get.theme.colorScheme.primary,
+                        decoration: const InputDecoration(
+                          hintText: "Nota de la imagen",
+                        ),
+                      ),
+                    ),
+                  )
+                : const SizedBox())
           ],
         ),
       ),

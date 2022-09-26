@@ -59,26 +59,22 @@ class _ViewDocumentState extends State<ViewDocument> {
                               ? const Icon(Icons.favorite)
                               : const Icon(Icons.favorite_border)),
                     )),
-                Visibility(
-                  visible: document.archived == '0',
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: IconButton(
-                        onPressed: () {
-                          if (document.archived == "0") {
-                            documentController.setArchiveValue(index, "1");
-                          } else {
-                            documentController.setArchiveValue(index, "0");
-                          }
-                        },
-                        icon: Obx(() => documentController
-                                .changingFavorite.value
-                            ? const Center(child: CircularProgressIndicator())
-                            : document.archived == '1'
-                                ? const Icon(Icons.archive)
-                                : const Icon(Icons.archive_outlined)),
-                      )),
-                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: IconButton(
+                      onPressed: () {
+                        if (document.archived == "0") {
+                          documentController.setArchiveValue(index, "1");
+                        } else {
+                          documentController.setArchiveValue(index, "0");
+                        }
+                      },
+                      icon: Obx(() => documentController.changingFavorite.value
+                          ? const Center(child: CircularProgressIndicator())
+                          : document.archived == '1'
+                              ? const Icon(Icons.archive)
+                              : const Icon(Icons.archive_outlined)),
+                    )),
               ],
             ),
             body: Padding(
@@ -141,6 +137,11 @@ class _ViewDocumentState extends State<ViewDocument> {
                           ).show();
                         },
                       ),
+                      Center(
+                        child: Visibility(
+                            visible: document.notaImg1!.isNotEmpty,
+                            child: Text(document.notaImg1.toString())),
+                      ),
                       InkWell(
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -180,7 +181,12 @@ class _ViewDocumentState extends State<ViewDocument> {
                               },
                               itemCount: 1,
                             ).show();
-                          })
+                          }),
+                      Center(
+                        child: Visibility(
+                            visible: document.notaImg2!.isNotEmpty,
+                            child: Text(document.notaImg2.toString())),
+                      ),
                     ]),
               ),
             ),

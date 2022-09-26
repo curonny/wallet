@@ -24,6 +24,8 @@ class DocumentController extends GetxController {
   final txtImageBack = TextEditingController();
   final txtDate = TextEditingController();
   final txtCategory = TextEditingController();
+  final txtNota1 = TextEditingController();
+  final txtNota2 = TextEditingController();
 
   RxString imageCardMain = "".obs;
   RxString imageCardSecondary = "".obs;
@@ -59,6 +61,8 @@ class DocumentController extends GetxController {
           date: DateTime.now().toString(),
           favorite: "0",
           archived: "0",
+          notaImg1: txtNota1.text,
+          notaImg2: txtNota2.text,
           imageFront: imageCardMain.value.toString(),
           imageBack: imageCardSecondary.value.toString());
       var box = await Hive.openBox<Document>("documents");
@@ -101,6 +105,8 @@ class DocumentController extends GetxController {
       document.categorie = txtCategory.text;
       document.imageFront = txtImageFront.text.toString();
       document.imageBack = txtImageBack.text.toString();
+      document.notaImg1 = txtNota1.text.toString();
+      document.notaImg2 = txtNota2.text.toString();
       document.save();
       clearController();
       getItems();
@@ -125,6 +131,8 @@ class DocumentController extends GetxController {
     txtImageBack.text = "";
     txtImageFront.text = "";
     txtCategory.text = "";
+    txtNota1.text = "";
+    txtNota2.text = "";
     imageCardMain.value = "";
     imageCardSecondary.value = "";
   }
