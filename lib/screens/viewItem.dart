@@ -31,7 +31,7 @@ class _ViewDocumentState extends State<ViewDocument> {
         ? const Center(child: CircularProgressIndicator())
         : Scaffold(
             appBar: AppBar(
-              title: Text(document.categorie.toString()),
+              title: const Text("Documento"),
               actions: [
                 IconButton(
                     onPressed: () {},
@@ -83,6 +83,10 @@ class _ViewDocumentState extends State<ViewDocument> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(document.categorie.toString()),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(

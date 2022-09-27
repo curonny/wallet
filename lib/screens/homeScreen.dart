@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wallet/models/document.dart';
@@ -54,146 +53,147 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: Drawer(
-        child: ListView(children: [
-          UserAccountsDrawerHeader(
-            accountName: const Text("DWallet"),
-            accountEmail: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: const Text("DWallet"),
+              accountEmail: const Text(
                 "La billetera electrónica para tus documentos",
-                maxLines: 2,
-                style: TextStyle(fontSize: 10),
+                maxLines: 3,
+                style: TextStyle(fontSize: 16),
+              ),
+              currentAccountPicture: CircleAvatar(
+                radius: 200,
+                backgroundColor: Colors.blue,
+                child: Image.asset("assets/image/playstore.png"),
               ),
             ),
-            currentAccountPicture: CircleAvatar(
-              radius: 100,
-              backgroundColor: Colors.blue,
-              child: Image.asset("assets/image/playstore.png"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.credit_card),
+                title: const Text('Todas'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.credit_card),
-              title: const Text('Todas'),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.favorite),
+                title: const Text('Favoritos'),
+                onTap: () {
+                  Get.to(() => FavoritesScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.favorite),
-              title: const Text('Favoritos'),
-              onTap: () {
-                Get.to(() => FavoritesScreen());
-              },
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(CupertinoIcons.person),
+                title: const Text('Documentos de identidad'),
+                subtitle:
+                    const Text("Registre su documento identidad y pasaporte"),
+                onTap: () {
+                  Get.to(() => PersonalDocumentsScreen());
+                },
+              ),
             ),
-          ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(CupertinoIcons.person),
-              title: const Text('Documentos de identidad'),
-              subtitle:
-                  const Text("Registre su documento identidad y pasaporte"),
-              onTap: () {
-                Get.to(() => PersonalDocumentsScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.credit_card),
+                title: const Text('Documentos bancarios'),
+                subtitle:
+                    const Text("Registre sus tarjetas y la de sus amigos "),
+                onTap: () {
+                  Get.to(() => TarjetasBancariasScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.credit_card),
-              title: const Text('Documentos bancarios'),
-              subtitle: const Text("Registre sus tarjetas y la de sus amigos "),
-              onTap: () {
-                Get.to(() => TarjetasBancariasScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.local_hospital),
+                title: const Text('Documentos médicos'),
+                subtitle: const Text("Registre documentos médicos"),
+                onTap: () {
+                  Get.to(() => HospitalDocumentScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.local_hospital),
-              title: const Text('Documentos médicos'),
-              subtitle: const Text("Registre documentos médicos"),
-              onTap: () {
-                Get.to(() => HospitalDocumentScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.event),
+                title: const Text('Reservas eventos'),
+                subtitle: const Text("Registre sus reservas de eventos"),
+                onTap: () {
+                  Get.to(() => EventScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.event),
-              title: const Text('Reservas eventos'),
-              subtitle: const Text("Registre sus reservas de eventos"),
-              onTap: () {
-                Get.to(() => EventScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.hotel),
+                title: const Text('Reservas hoteleras'),
+                subtitle: const Text("Registre sus reservas de hoteles"),
+                onTap: () {
+                  Get.to(() => HotelScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.hotel),
-              title: const Text('Reservas hoteleras'),
-              subtitle: const Text("Registre sus reservas de hoteles"),
-              onTap: () {
-                Get.to(() => HotelScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.airplane_ticket),
+                title: const Text('Reservas avión'),
+                subtitle: const Text("Registre sus reservas de vuelos"),
+                onTap: () {
+                  Get.to(() => VuelosScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.airplane_ticket),
-              title: const Text('Reservas avión'),
-              subtitle: const Text("Registre sus reservas de vuelos"),
-              onTap: () {
-                Get.to(() => VuelosScreen());
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.ads_click_outlined),
+                title: const Text('Otros'),
+                subtitle: const Text("Registre cualquier documento"),
+                onTap: () {
+                  Get.to(() => OhtersScreen());
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.ads_click_outlined),
-              title: const Text('Otros'),
-              subtitle: const Text("Registre cualquier documento"),
-              onTap: () {
-                Get.to(() => OhtersScreen());
-              },
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.info),
+                title: const Text('Sobre nosotros'),
+                onTap: () {
+                  Get.to(() => AboutUs());
+                },
+              ),
             ),
-          ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text('Sobre nosotros'),
-              onTap: () {
-                Get.to(() => AboutUs());
-              },
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: const Icon(Icons.archive),
+                title: const Text('Archivados'),
+                onTap: () {
+                  Get.to(() => ArchiveScreen());
+                },
+              ),
             ),
-          ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: const Icon(Icons.archive),
-              title: const Text('Archivados'),
-              onTap: () {
-                Get.to(() => ArchiveScreen());
-              },
-            ),
-          ),
-          const Divider(),
-        ]),
+            const Divider(),
+          ],
+        )),
       ),
       body: Obx(() => documentController.isLoading.value
           ? const Center(child: CircularProgressIndicator())
@@ -324,10 +324,26 @@ class DocumentSearch extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     List<Document> suggestionList = [];
     for (int i = 0; i < listDocuments.length; i++) {
-      if (listDocuments[i].nombre.toString().toLowerCase().contains(query) ||
-          listDocuments[i].categorie.toString().contains(query) ||
-          listDocuments[i].notaImg1.toString().contains(query) ||
-          listDocuments[i].notaImg2.toString().contains(query)) {
+      if (listDocuments[i]
+              .nombre
+              .toString()
+              .toLowerCase()
+              .contains(query.toLowerCase()) ||
+          listDocuments[i]
+              .categorie
+              .toString()
+              .toLowerCase()
+              .contains(query.toLowerCase()) ||
+          listDocuments[i]
+              .notaImg1
+              .toString()
+              .toLowerCase()
+              .contains(query.toLowerCase()) ||
+          listDocuments[i]
+              .notaImg2
+              .toString()
+              .toLowerCase()
+              .contains(query.toLowerCase())) {
         suggestionList.add(listDocuments[i]);
       }
     }
