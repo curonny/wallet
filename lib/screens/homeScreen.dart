@@ -232,43 +232,87 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context, index) {
               Document documento = documentController.listDocuments[index];
               if (documento.archived == "0" || documento.archived == null) {
-                return GestureDetector(
-                  onTap: () {
-                    Get.to(() => ViewDocument(),
-                        arguments: {"item": documento, "index": index});
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      elevation: 1,
-                      child: ListTile(
-                        title: Text(documento.nombre.toString()),
-                        subtitle: Column(
-                          children: [
-                            Text(
-                              documento.categorie.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                return documento.favorite == "1"
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => ViewDocument(),
+                              arguments: {"item": documento, "index": index});
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Banner(
+                            location: BannerLocation.topStart,
+                            message: "fav",
+                            color: Colors.red,
+                            child: Card(
+                              elevation: 1,
+                              child: ListTile(
+                                title: Text(documento.nombre.toString()),
+                                subtitle: Column(
+                                  children: [
+                                    Text(
+                                      documento.categorie.toString(),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(DateFormat.yMMMd().format(
+                                        DateTime.parse(
+                                            documento.date.toString())))
+                                  ],
+                                ),
+                                trailing: InkWell(
+                                  onTap: () {
+                                    documentController.removeDocument(index);
+                                  },
+                                  child: const Icon(
+                                    Icons.delete,
+                                    size: 20,
+                                  ),
+                                ),
+                                leading: getIconDocument(
+                                    documento.categorie.toString()),
+                              ),
                             ),
-                            Text(DateFormat.yMMMd().format(
-                                DateTime.parse(documento.date.toString())))
-                          ],
-                        ),
-                        trailing: InkWell(
-                          onTap: () {
-                            documentController.removeDocument(index);
-                          },
-                          child: const Icon(
-                            Icons.delete,
-                            size: 20,
                           ),
                         ),
-                        leading:
-                            getIconDocument(documento.categorie.toString()),
-                      ),
-                    ),
-                  ),
-                );
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          Get.to(() => ViewDocument(),
+                              arguments: {"item": documento, "index": index});
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 1,
+                            child: ListTile(
+                              title: Text(documento.nombre.toString()),
+                              subtitle: Column(
+                                children: [
+                                  Text(
+                                    documento.categorie.toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(DateFormat.yMMMd().format(DateTime.parse(
+                                      documento.date.toString())))
+                                ],
+                              ),
+                              trailing: InkWell(
+                                onTap: () {
+                                  documentController.removeDocument(index);
+                                },
+                                child: const Icon(
+                                  Icons.delete,
+                                  size: 20,
+                                ),
+                              ),
+                              leading: getIconDocument(
+                                  documento.categorie.toString()),
+                            ),
+                          ),
+                        ),
+                      );
               } else {
                 return const SizedBox();
               }
