@@ -26,15 +26,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void donLogin() {
     Future.delayed(const Duration(seconds: 3), () async {
-      if (GetPlatform.isAndroid) {
-        if (paymentController.dwalletPurchased.value) {
-          Get.offAll(HomeScreen());
-        } else {
-          Get.offAll(BuyAppScreen());
-        }
-      } else {
-        Get.offAll(HomeScreen());
-      }
+      Get.offAll(HomeScreen());
+      // if (GetPlatform.isAndroid) {
+      //   if (paymentController.dwalletPurchased.value) {
+      //     Get.offAll(HomeScreen());
+      //   } else {
+      //     Get.offAll(BuyAppScreen());
+      //   }
+      // } else {
+      //   Get.offAll(HomeScreen());
+      // }
     });
   }
 
